@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Sekura</string>
+    <string name="navigation_drawer_open">Otwórz menu nawigacji</string>
+    <string name="navigation_drawer_close">Zamknij menu nawigacji</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Nagłówek nawigacji</string>
+    <string name="action_settings">Ustawienia</string>
+
+    <string name="hello_world">Witaj świecie!</string>
+</resources>

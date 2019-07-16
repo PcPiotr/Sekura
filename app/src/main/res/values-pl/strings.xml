@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_placeholder_toast">Zamień na własną akcję</string>
+    <string name="action_placeholder">Działanie</string>
+    <string name="nav_action_settings">Ustawienia</string>
+    <string name="nav_action_about">Informacje</string>
+    <string name="nav_header_more">Zaawansowane</string>
+</resources>
