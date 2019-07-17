@@ -1,4 +1,4 @@
-package pl.redny.sekura.encryption.model
+package pl.redny.sekura.model
 
 enum class EncryptionAlgorithm {
     RSA, AES
