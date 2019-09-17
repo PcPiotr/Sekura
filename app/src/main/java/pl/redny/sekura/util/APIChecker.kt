@@ -60,6 +60,13 @@ object APIChecker {
     fun isPie() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.P
 
     /**
+     * Method checks if API level is 29 or newer.
+     *
+     * @return [Boolean] true if API level is high enough.
+     */
+    fun isQ() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+
+    /**
      * Method checks for Root access.
      * Uses three different methods, might give false positives.
      * @return [Boolean] true if system has unlocked Root access.
