@@ -1,4 +1,4 @@
-package pl.redny.sekura.model
+package pl.redny.sekura.encryption
 
 /**
  * TODO
