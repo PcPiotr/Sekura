@@ -1,4 +1,4 @@
-package pl.redny.sekura
+package pl.redny.sekura.activity
 
 import android.net.Uri
 

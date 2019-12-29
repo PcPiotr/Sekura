@@ -7,7 +7,7 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 
 /**
- * Class responsible for chcecking API version of Android.
+ * Class responsible for checking API version of Android.
  */
 object APIChecker {
     /**
@@ -15,7 +15,7 @@ object APIChecker {
      */
     private const val TAG = "APIChecker"
     /**
-     * [String] array consisting of potential su foldder paths.
+     * [String] array consisting of potential su folder paths.
      * Required for Root access check.
      */
     private val rootPaths = arrayOf(

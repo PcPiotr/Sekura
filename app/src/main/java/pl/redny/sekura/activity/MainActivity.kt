@@ -1,4 +1,4 @@
-package pl.redny.sekura
+package pl.redny.sekura.activity
 
 import android.Manifest
 import android.content.Intent
@@ -18,16 +18,18 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import org.koin.android.ext.android.inject
 import org.koin.core.context.startKoin
-import pl.redny.sekura.config.beans
+import pl.redny.sekura.R
+import pl.redny.sekura.activity.view.filePicker.FilePicker
+import pl.redny.sekura.config.mainActivityModule
 import pl.redny.sekura.encryption.EncryptionService
-import pl.redny.sekura.securityRaport.SecurityReport
 import pl.redny.sekura.util.ResourcesUtil
+import pl.redny.sekura.util.SystemProperties
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private val securityReport: SecurityReport by inject()
-
     private val encryptionService: EncryptionService by inject()
+
+    private val filePicker: FilePicker by inject()
 
     private val viewModel = ViewModel()
 
@@ -35,14 +37,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
 
         startKoin {
-            // your modules
-            modules(beans)
+            modules(mainActivityModule)
         }
 
         setContentView(R.layout.activity_main)
 
         val helloTextView: TextView = findViewById(R.id.text_view_test_id)
-        helloTextView.text = securityReport.getSecurityPatchDate()
+        helloTextView.text = SystemProperties.getSecurityPatchDate()
 
         setSupportActionBar(toolbar)
 
@@ -52,7 +53,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         val toggle = ActionBarDrawerToggle(
-            this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+            this, drawer_layout, toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
         )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
@@ -65,25 +68,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             100
         )
 
-        button_picker_1.setOnClickListener { openFilePicker() }
-        button_picker_2.setOnClickListener { openSaveFilePicker() }
-    }
-
-    private fun openSaveFilePicker() {
-        val intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
-            .addCategory(Intent.CATEGORY_OPENABLE)
-            .setType("text/plain")
-            .putExtra(Intent.EXTRA_TITLE, "newfile.txt")
-
-        startActivityForResult(Intent.createChooser(intent, ResourcesUtil.getResource(this, R.string.action_file_pick)), 2138)
-    }
-
-    private fun openFilePicker() {
-        val intent = Intent()
-            .setType("*/*")
-            .setAction(Intent.ACTION_GET_CONTENT)
-
-        startActivityForResult(Intent.createChooser(intent, ResourcesUtil.getResource(this, R.string.action_file_pick)), 2137)
+        button_picker_1.setOnClickListener { filePicker.openFilePicker(this) }
+        button_picker_2.setOnClickListener { filePicker.openSaveFile(this, "newfile.txt") }
     }
 
     override fun onBackPressed() {
@@ -131,7 +117,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (resultCode != RESULT_OK) {
             return
         }

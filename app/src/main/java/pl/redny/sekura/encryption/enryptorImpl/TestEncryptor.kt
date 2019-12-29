@@ -1,5 +1,6 @@
-package pl.redny.sekura.encryption
+package pl.redny.sekura.encryption.enryptorImpl
 
+import pl.redny.sekura.encryption.Encryptor
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream

@@ -45,4 +45,19 @@ object SystemProperties {
             process?.destroy()
         }
     }
+
+    /**
+     * Method responsible for finding Security patch level.
+     * Uses official API for API23+, and reads props for older API version.
+     *
+     * @return [String] of format "rrrr-mm-dd".
+     * If Android doesn't support Security patches, returns empty [String].
+     */
+    fun getSecurityPatchDate(): String {
+        return if (APIChecker.isMarshmallow()) {
+            android.os.Build.VERSION.SECURITY_PATCH
+        } else {
+            SystemProperties.getPropFromGetProp("ro.build.version.security_patch")
+        }
+    }
 }

@@ -1,15 +1,17 @@
 package pl.redny.sekura.config
 
+import org.koin.dsl.bind
 import org.koin.dsl.module
+import pl.redny.sekura.activity.view.filePicker.AndroidFilePicker
+import pl.redny.sekura.activity.view.filePicker.FilePicker
 import pl.redny.sekura.encryption.EncryptionService
-import pl.redny.sekura.encryption.TestEncryptor
-import pl.redny.sekura.securityRaport.SecurityReport
+import pl.redny.sekura.encryption.enryptorImpl.TestEncryptor
 
-class ModuleConfiguration(val securityReport: SecurityReport)
+class ModuleConfiguration
 
-// just declare it
-val beans = module {
-    single { ModuleConfiguration(get()) }
-    single { SecurityReport() }
+val mainActivityModule = module {
+    single { ModuleConfiguration() }
     single { EncryptionService(listOf(TestEncryptor())) }
+    single { AndroidFilePicker() } bind FilePicker::class
+
 }
