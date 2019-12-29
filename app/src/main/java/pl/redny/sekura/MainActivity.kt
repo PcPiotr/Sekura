@@ -21,6 +21,7 @@ import org.koin.core.context.startKoin
 import pl.redny.sekura.config.beans
 import pl.redny.sekura.encryption.EncryptionService
 import pl.redny.sekura.securityRaport.SecurityReport
+import pl.redny.sekura.util.ResourcesUtil
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private val encryptionService: EncryptionService by inject()
 
-    val contentMainBindingImpl = ViewModel()
+    private val viewModel = ViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,27 +65,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             100
         )
 
-        button_picker_1.setOnClickListener {
+        button_picker_1.setOnClickListener { openFilePicker() }
+        button_picker_2.setOnClickListener { openSaveFilePicker() }
+    }
 
-            val intent = Intent()
-                .setType("*/*")
-                .setAction(Intent.ACTION_GET_CONTENT)
+    private fun openSaveFilePicker() {
+        val intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
+            .addCategory(Intent.CATEGORY_OPENABLE)
+            .setType("text/plain")
+            .putExtra(Intent.EXTRA_TITLE, "newfile.txt")
 
-            startActivityForResult(Intent.createChooser(intent, "Select a file"), 2137)
+        startActivityForResult(Intent.createChooser(intent, ResourcesUtil.getResource(this, R.string.action_file_pick)), 2138)
+    }
 
-        }
-        button_picker_2.setOnClickListener {
+    private fun openFilePicker() {
+        val intent = Intent()
+            .setType("*/*")
+            .setAction(Intent.ACTION_GET_CONTENT)
 
-            val intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
-            intent.addCategory(Intent.CATEGORY_OPENABLE)
-            intent.type = "text/plain"
-            intent.putExtra(Intent.EXTRA_TITLE, "newfile.txt")
-
-            startActivityForResult(Intent.createChooser(intent, "Select a file"), 2138)
-
-        }
-
-
+        startActivityForResult(Intent.createChooser(intent, ResourcesUtil.getResource(this, R.string.action_file_pick)), 2137)
     }
 
     override fun onBackPressed() {
@@ -137,13 +136,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             return
         }
 
-        if (requestCode == 2137) {
-            contentMainBindingImpl.encryptedFilePath = data?.data
-            text_path_file.text = Editable.Factory.getInstance().newEditable(data?.data.toString())
-
-        } else if (requestCode == 2138) {
-            contentMainBindingImpl.decryptedFilePath = data?.data
-            text_path_file_decrypted.text = Editable.Factory.getInstance().newEditable(data?.data.toString())
+        when (requestCode) {
+            2137 -> {
+                viewModel.encryptedFilePath = data?.data
+                text_path_file.text = Editable.Factory.getInstance().newEditable(data?.data.toString())
+            }
+            2138 -> {
+                viewModel.decryptedFilePath = data?.data
+                text_path_file_decrypted.text = Editable.Factory.getInstance().newEditable(data?.data.toString())
+            }
         }
     }
 }
