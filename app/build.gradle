@@ -100,4 +100,5 @@ dependencies {
     annotationProcessor 'com.sun.xml.bind:jaxb-impl:2.3.2'*/
 
     //implementation 'com.github.stericson:roottools:5.0'
+    implementation "com.google.android.gms:play-services-location:15.0.1"
 }

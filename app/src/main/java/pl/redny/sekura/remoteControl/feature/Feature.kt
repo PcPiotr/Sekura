@@ -3,7 +3,7 @@ package pl.redny.sekura.remoteControl.feature
 import pl.redny.sekura.remoteControl.rule.Rule
 
 interface Feature {
-    var rules: MutableList<Rule>;
+    var rules: MutableList<Rule>
 
     fun handle(parameters: HashMap<String, Any?>)
 
