@@ -23,8 +23,10 @@ import pl.redny.sekura.R
 import pl.redny.sekura.activity.view.filePicker.FilePicker
 import pl.redny.sekura.config.mainActivityModule
 import pl.redny.sekura.encryption.EncryptionService
+import pl.redny.sekura.encryption.Encryptor
+import pl.redny.sekura.encryption.AESEncryptor
+import pl.redny.sekura.encryption.DESEncryptor
 import pl.redny.sekura.remoteControl.receiver.SmsBroadcastReceiver
-import pl.redny.sekura.util.ResourcesUtil
 import pl.redny.sekura.util.SystemProperties
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -36,6 +38,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val viewModel = ViewModel()
 
     private val broadcastReceiver = SmsBroadcastReceiver()
+
+    private var encryptor: Encryptor = AESEncryptor()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,7 +85,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
 
         button_picker_1.setOnClickListener { filePicker.openFilePicker(this) }
-        button_picker_2.setOnClickListener { filePicker.openSaveFile(this, "newfile.txt") }
+        button_picker_2.setOnClickListener { filePicker.openSaveFile(this, "file") }
+        button_encrypt_action.setOnClickListener { onEncryptButton() }
     }
 
     override fun onBackPressed() {
@@ -89,6 +94,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
+        }
+    }
+
+    private fun onEncryptButton() {
+        val mode: Boolean = radio_encrypt.isChecked
+        val password = password.text.toString()
+
+        if (radio_aes.isChecked) {
+            encryptor = AESEncryptor()
+        } else if (radio_des.isChecked) {
+            encryptor = DESEncryptor()
+        }
+        val inputStream = contentResolver.openInputStream(Uri.parse(text_path_file.text.toString()))
+        val outputStream = contentResolver.openOutputStream(Uri.parse(text_path_file_decrypted.text.toString()))
+        if (mode) {
+            encryptor.encrypt(password, inputStream!!, outputStream!!)
+        } else {
+            encryptor.decrypt(password, inputStream!!, outputStream!!)
         }
     }
 

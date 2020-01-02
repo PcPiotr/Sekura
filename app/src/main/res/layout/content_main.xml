@@ -48,4 +48,55 @@
             android:layout_below="@+id/text_path_file"
             android:layout_toEndOf="@+id/text_path_file_decrypted"
             android:id="@+id/button_picker_2"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:layout_below="@+id/button_picker_2"
+            android:id="@+id/password"/>
+    <RadioGroup
+            android:id="@+id/radio_group_mode"
+            android:layout_below="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:checkedButton="@id/radio_encrypt">
+        <RadioButton android:id="@+id/radio_encrypt"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="@string/mode_encrypt"/>
+        <RadioButton android:id="@+id/radio_decrypt"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="@string/mode_decrypt"/>
+    </RadioGroup>
+    <Button
+            android:text="@string/action_encryption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_encrypt_action"
+            android:layout_below="@+id/radio_group_mode"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="3dp"/>
+    <RadioGroup
+            android:id="@+id/radio_group_algorithm"
+            android:layout_below="@+id/button_encrypt_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:checkedButton="@id/radio_aes">
+        <RadioButton android:id="@+id/radio_aes"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="AES"/>
+        <RadioButton android:id="@+id/radio_des"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="DES"/>
+    </RadioGroup>
 </RelativeLayout>

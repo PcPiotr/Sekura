@@ -6,4 +6,7 @@
     <string name="nav_action_about">Informacje</string>
     <string name="nav_header_more">Zaawansowane</string>
     <string name="action_file_pick">Wybierz plik</string>
+    <string name="mode_encrypt">Szyfrowanie</string>
+    <string name="mode_decrypt">Deszyfrowanie</string>
+    <string name="action_encryption">Wykonaj</string>
 </resources>

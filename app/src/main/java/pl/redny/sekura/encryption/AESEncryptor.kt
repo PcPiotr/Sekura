@@ -1,6 +1,5 @@
-package pl.redny.sekura.encryption.enryptorImpl
+package pl.redny.sekura.encryption
 
-import pl.redny.sekura.encryption.Encryptor
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -13,10 +12,11 @@ import javax.crypto.NoSuchPaddingException
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
-class TestEncryptor : Encryptor {
+class AESEncryptor : Encryptor {
     private val DEFAULT__READ_WRITE_BLOCK_BUFFER_SIZE = 1024
     private val ALGO_IMAGE_ENCRYPTOR = "AES/CBC/PKCS5Padding"
     private val ALGO_SECRET_KEY = "AES"
+    private val IV_PARAMETER_SPEC = "razdwatrzycztery"
 
     @Throws(
         NoSuchAlgorithmException::class,
@@ -25,11 +25,11 @@ class TestEncryptor : Encryptor {
         IOException::class,
         InvalidAlgorithmParameterException::class
     )
-    override fun encrypt(keyStr: String, spec: String, input: InputStream, output: OutputStream) {
+    override fun encrypt(keyStr: String, input: InputStream, output: OutputStream) {
 
         var output = output
         try {
-            val iv = IvParameterSpec(spec.toByteArray(charset("UTF-8")))
+            val iv = IvParameterSpec(IV_PARAMETER_SPEC.toByteArray(charset("UTF-8")))
             val keySpec = SecretKeySpec(keyStr.toByteArray(charset("UTF-8")), ALGO_SECRET_KEY)
 
             val c = Cipher.getInstance(ALGO_IMAGE_ENCRYPTOR)
@@ -53,11 +53,11 @@ class TestEncryptor : Encryptor {
         IOException::class,
         InvalidAlgorithmParameterException::class
     )
-    override fun decrypt(keyStr: String, spec: String, input: InputStream, output: OutputStream) {
+    override fun decrypt(keyStr: String, input: InputStream, output: OutputStream) {
 
         var output = output
         try {
-            val iv = IvParameterSpec(spec.toByteArray(charset("UTF-8")))
+            val iv = IvParameterSpec(IV_PARAMETER_SPEC.toByteArray(charset("UTF-8")))
             val keySpec = SecretKeySpec(keyStr.toByteArray(charset("UTF-8")), ALGO_SECRET_KEY)
 
             val c = Cipher.getInstance(ALGO_IMAGE_ENCRYPTOR)

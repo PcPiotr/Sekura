@@ -25,8 +25,8 @@ class AndroidFilePicker : FilePicker {
     override fun openSaveFile(appCompatActivity: AppCompatActivity, defaultSaveFile: String) {
         val intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
             .addCategory(Intent.CATEGORY_OPENABLE)
-            .setType("text/plain")
-            .putExtra(Intent.EXTRA_TITLE, "newfile.txt")
+            .setType("*/*")
+            .putExtra(Intent.EXTRA_TITLE, defaultSaveFile)
 
         appCompatActivity.startActivityForResult(
             Intent.createChooser(
