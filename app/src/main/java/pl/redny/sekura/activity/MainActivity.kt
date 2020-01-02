@@ -2,6 +2,7 @@ package pl.redny.sekura.activity
 
 import android.Manifest
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import com.google.android.material.snackbar.Snackbar
@@ -22,6 +23,7 @@ import pl.redny.sekura.R
 import pl.redny.sekura.activity.view.filePicker.FilePicker
 import pl.redny.sekura.config.mainActivityModule
 import pl.redny.sekura.encryption.EncryptionService
+import pl.redny.sekura.remoteControl.receiver.SmsBroadcastReceiver
 import pl.redny.sekura.util.ResourcesUtil
 import pl.redny.sekura.util.SystemProperties
 
@@ -32,6 +34,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val filePicker: FilePicker by inject()
 
     private val viewModel = ViewModel()
+
+    private val broadcastReceiver = SmsBroadcastReceiver()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +68,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         ActivityCompat.requestPermissions(
             this,
-            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE),
+            arrayOf(
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_SMS,
+                Manifest.permission.SEND_SMS,
+                Manifest.permission.RECEIVE_SMS,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ),
             100
         )
 
@@ -125,6 +137,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             2137 -> {
                 viewModel.encryptedFilePath = data?.data
                 text_path_file.text = Editable.Factory.getInstance().newEditable(data?.data.toString())
+                //text_path_file.text = Editable.Factory.getInstance().newEditable(ResourcesUtil.getPath(this, Uri.parse(data?.data.toString())))
             }
             2138 -> {
                 viewModel.decryptedFilePath = data?.data

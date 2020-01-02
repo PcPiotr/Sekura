@@ -16,7 +16,7 @@ android {
     defaultConfig {
         applicationId "pl.redny.sekura"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -98,4 +98,7 @@ dependencies {
     annotationProcessor 'javax.xml.bind:jaxb-api:2.3.1'
     annotationProcessor 'com.sun.xml.bind:jaxb-core:2.3.0.1'
     annotationProcessor 'com.sun.xml.bind:jaxb-impl:2.3.2'*/
+
+    //implementation 'com.github.stericson:roottools:5.0'
+    implementation "com.google.android.gms:play-services-location:15.0.1"
 }
