@@ -11,7 +11,7 @@ import pl.redny.sekura.encryption.DESEncryptor
 
 class ModuleConfiguration
 
-val mainActivityModule = module {
+val mainActivityModules = module {
     single { ModuleConfiguration() }
     single { EncryptionService(listOf(AESEncryptor())) }
     single { AndroidFilePicker() } bind FilePicker::class

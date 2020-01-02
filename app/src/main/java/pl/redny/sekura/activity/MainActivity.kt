@@ -1,3 +1,4 @@
+
 package pl.redny.sekura.activity
 
 import android.Manifest
@@ -5,31 +6,25 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
-import androidx.core.view.GravityCompat
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.TextView
 import androidx.core.app.ActivityCompat
+import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.tab1.*
 import org.koin.android.ext.android.inject
 import org.koin.core.context.startKoin
 import pl.redny.sekura.R
 import pl.redny.sekura.activity.view.filePicker.FilePicker
-import pl.redny.sekura.config.mainActivityModule
+import pl.redny.sekura.config.mainActivityModules
 import pl.redny.sekura.encryption.EncryptionService
 import pl.redny.sekura.encryption.Encryptor
 import pl.redny.sekura.encryption.AESEncryptor
 import pl.redny.sekura.encryption.DESEncryptor
 import pl.redny.sekura.remoteControl.receiver.SmsBroadcastReceiver
-import pl.redny.sekura.util.SystemProperties
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity() {
 
     private val encryptionService: EncryptionService by inject()
 
@@ -45,30 +40,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
 
         startKoin {
-            modules(mainActivityModule)
+            modules(mainActivityModules)
         }
 
         setContentView(R.layout.activity_main)
 
-        val helloTextView: TextView = findViewById(R.id.text_view_test_id)
-        helloTextView.text = SystemProperties.getSecurityPatchDate()
+        var adapterViewPager = MyPageAdapter(supportFragmentManager)
+        view_pager.adapter = adapterViewPager
 
-        setSupportActionBar(toolbar)
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, R.string.action_placeholder_toast, Snackbar.LENGTH_LONG)
-                .setAction(R.string.action_placeholder, null).show()
-        }
-
-        val toggle = ActionBarDrawerToggle(
-            this, drawer_layout, toolbar,
-            R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close
-        )
-        drawer_layout.addDrawerListener(toggle)
-        toggle.syncState()
-
-        nav_view.setNavigationItemSelectedListener(this)
+        val tabs: TabLayout = findViewById(R.id.view_pager_tab)
+        tabs.setupWithViewPager(view_pager)
 
         ActivityCompat.requestPermissions(
             this,
@@ -87,14 +68,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         button_picker_1.setOnClickListener { filePicker.openFilePicker(this) }
         button_picker_2.setOnClickListener { filePicker.openSaveFile(this, "file") }
         button_encrypt_action.setOnClickListener { onEncryptButton() }
-    }
-
-    override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
     }
 
     private fun onEncryptButton() {
@@ -129,25 +102,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.action_settings -> return true
             else -> return super.onOptionsItemSelected(item)
         }
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
-        /*
-        when (item.itemId) {
-            R.id.nav_tbd -> {
-
-            }
-            R.id.nav_settings -> {
-
-            }
-            R.id.nav_about -> {
-
-            }
-        }
-        */
-        drawer_layout.closeDrawer(GravityCompat.START)
-        return true
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
