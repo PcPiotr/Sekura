@@ -9,4 +9,8 @@
     <string name="mode_encrypt">Szyfrowanie</string>
     <string name="mode_decrypt">Deszyfrowanie</string>
     <string name="action_encryption">Wykonaj</string>
+    <string name="tab_text_1">Szyfrowanie</string>
+    <string name="tab_text_2">Sterowanie SMS</string>
+    <string name="tab_text_3">Ustawienia</string>
+    <string name="tab_text_4">Informacje</string>
 </resources>

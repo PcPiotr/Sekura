@@ -18,7 +18,11 @@
     <string name="mode_decrypt">Decrypt</string>
     <string name="mode_encrypt">Encrypt</string>
     <string name="action_encryption">Start</string>
-
+    <string name="title_activity_main" translatable="false">Sekura</string>
+    <string name="tab_text_1">Encryption</string>
+    <string name="tab_text_2">SMS Control</string>
+    <string name="tab_text_3">Settings</string>
+    <string name="tab_text_4">About</string>
     <!--main activity. -->
 
 
