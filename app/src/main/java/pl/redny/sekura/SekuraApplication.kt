@@ -6,6 +6,7 @@ import pl.redny.sekura.config.mainActivityModules
 
 class SekuraApplication : Application() {
     override fun onCreate() {
+        setTheme(R.style.splashScreenTheme);
         super.onCreate()
         startKoin {
             modules(mainActivityModules)

@@ -16,7 +16,7 @@ android {
     defaultConfig {
         applicationId "pl.redny.sekura"
         minSdkVersion 21
-        targetSdkVersion 24
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -108,7 +108,7 @@ dependencies {
     // Kotlin
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
     // Testing Fragments in Isolation
-    implementation "androidx.fragment:fragment-testing:$fragment_version"
+    //implementation "androidx.fragment:fragment-testing:$fragment_version"
 
     implementation group: 'eu.chainfire', name: 'libsuperuser', version: '1.1.0.201907261845'
 
