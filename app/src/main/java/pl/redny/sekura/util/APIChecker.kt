@@ -2,6 +2,7 @@ package pl.redny.sekura.util
 
 import android.os.Build
 import android.util.Log
+import eu.chainfire.libsuperuser.Shell
 import java.io.File
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -72,6 +73,10 @@ object APIChecker {
      * @return [Boolean] true if system has unlocked Root access.
      */
     fun isRooted(): Boolean {
+        if (Shell.SU.available()) {
+            return true
+        }
+
         if (Build.TAGS != null && Build.TAGS.contains("test-keys")) {
             Log.i(TAG, "First check positive")
             return true

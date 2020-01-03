@@ -8,7 +8,7 @@ import pl.redny.sekura.R
 import pl.redny.sekura.util.ResourcesUtil
 
 class MyPageAdapter(fm: FragmentManager, var activity: AppCompatActivity) : FragmentPagerAdapter(fm) {
-    private val NUM_ITEMS = 4
+    private val NUM_ITEMS = 3
 
     override fun getItem(position: Int): Fragment {
         return when (position) {

@@ -33,7 +33,7 @@ class DESEncryptor : Encryptor {
     fun doCopy(input: InputStream, output: OutputStream) {
         val bytes = ByteArray(64)
         var numBytes: Int
-        while (input.read(bytes).also { numBytes = it } != -1) {
+        while (input.read(bytes).also { numBytes = it } > 0) {
             output.write(bytes, 0, numBytes)
         }
         output.flush()
