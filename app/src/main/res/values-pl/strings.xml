@@ -13,4 +13,6 @@
     <string name="tab_text_2">Sterowanie SMS</string>
     <string name="tab_text_3">Ustawienia</string>
     <string name="tab_text_4">Informacje</string>
+    <string name="settings_auth_disable">Wyłącz autoryzację</string>
+    <string name="settings_auth_set">Ustaw Autoryzację</string>
 </resources>

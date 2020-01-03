@@ -1,28 +1,25 @@
-
 package pl.redny.sekura.activity
 
 import android.Manifest
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
 import androidx.core.app.ActivityCompat
 import com.google.android.material.tabs.TabLayout
+import com.guardanis.applock.AppLock
+import com.guardanis.applock.activities.LockCreationActivity
+import com.guardanis.applock.activities.UnlockActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.tab1.*
 import org.koin.android.ext.android.inject
-import org.koin.core.context.startKoin
 import pl.redny.sekura.R
 import pl.redny.sekura.activity.view.filePicker.FilePicker
-import pl.redny.sekura.config.mainActivityModules
+import pl.redny.sekura.encryption.AESEncryptor
 import pl.redny.sekura.encryption.EncryptionService
 import pl.redny.sekura.encryption.Encryptor
-import pl.redny.sekura.encryption.AESEncryptor
-import pl.redny.sekura.encryption.DESEncryptor
 import pl.redny.sekura.remoteControl.receiver.SmsBroadcastReceiver
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,10 +35,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        startKoin {
-            modules(mainActivityModules)
-        }
 
         setContentView(R.layout.activity_main)
 
@@ -64,8 +57,16 @@ class MainActivity : AppCompatActivity() {
             ),
             100
         )
-    }
 
+        if (!AppLock.unlockIfRequired(this)) {
+            val intent = Intent(this, UnlockActivity::class.java)
+            startActivityForResult(intent, AppLock.REQUEST_CODE_UNLOCK)
+        } else {
+            val intent = Intent(this, LockCreationActivity::class.java)
+            startActivityForResult(intent, AppLock.REQUEST_CODE_LOCK_CREATION)
+        }
+
+    }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
