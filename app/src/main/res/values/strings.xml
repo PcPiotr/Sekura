@@ -1,19 +1,6 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Sekura</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
-
-    <string name="hello_world">Hello World!</string>
-    <string name="action_placeholder_toast">Replace with your own action</string>
-    <string name="action_placeholder">Action</string>
     <string name="placeholder_tbd" translatable="false">TBD</string>
-    <string name="nav_action_settings">Settings</string>
-    <string name="nav_action_about">About</string>
-    <string name="nav_header_more">Advanced</string>
     <string name="action_file_pick">Pick file</string>
     <string name="mode_decrypt">Decrypt</string>
     <string name="mode_encrypt">Encrypt</string>
@@ -28,4 +15,38 @@
     <!--main activity. -->
 
 
+    <!--applock -->
+    <string name="applock__description_chooser">Secure this application with a PIN or your fingerprints?</string>
+    <string name="applock__description_create_pin">Create a PIN to secure this application.</string>
+    <string name="applock__description_create_pin_reattempt">PINs didn\'t match. Try again.</string>
+    <string name="applock__description_create_fingerprint">Scan your fingerprint to secure this application.</string>
+    <string name="applock__description_create_fingerprint_paused">Fingerprint authentication canceled. Reload this content to restart.</string>
+    <string name="applock__description_confirm">Re-enter your PIN to confirm.</string>
+    <string name="applock__description_unlock_pin">Enter your PIN to unlock.</string>
+    <string name="applock__description_unlock_fingerprint">Scan your fingerprint to unlock.</string>
+    <string name="applock__description_unlock_fingerprint_help">We\'re having trouble recognizing your fingerprint: %1$s</string>
+
+    <string name="applock__create_chooser_option_pin" translatable="false">PIN</string>
+    <string name="applock__create_chooser_option_fingerprint">Fingerprint</string>
+
+    <string name="applock__unlock_error_no_matching_pin_found">There is no saved PIN to unlock.</string>
+    <string name="applock__unlock_error_match_failed">The PINs don\'t match!</string>
+    <string name="applock__unlock_error_insufficient_selection">Wrong number of digits! Please try again</string>
+    <string name="applock__unlock_error_retry_limit_exceeded">You failed too many times. You may try again in %1$s.</string>
+
+    <string name="applock__toast_unlock_required">You can\'t do that</string>
+
+    <string name="applock__password_char" translatable="false">" "</string>
+
+    <string name="applock__action_settings">Open System Settings</string>
+
+    <string name="applock__fingerprint_alias">AppLock</string>
+
+    <string name="applock__fingerprint_error_not_enrolled">You haven\'t setup fingerprint unlocking.</string>
+    <string name="applock__fingerprint_error_unrecognized">Your fingerprint wasn\'t recognized.</string>
+    <string name="applock__fingerprint_error_unknown">Something weird happened.</string>
+    <string name="applock__fingerprint_error_none">No fingerprints found! Enable them in your system settings.</string>
+    <string name="applock__fingerprint_error_hardware">Missing fingerprint hardware?</string>
+    <string name="applock__fingerprint_error_permission">Fingerprint permission required.</string>
+    <string name="applock__fingerprint_error_permission_multiple">Fingerprint permission denied. Please enable fingerprint support in your system settings.</string>
 </resources>
