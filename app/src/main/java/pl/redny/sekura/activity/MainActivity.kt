@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        var adapterViewPager = MyPageAdapter(supportFragmentManager)
+        val adapterViewPager = MyPageAdapter(supportFragmentManager, this)
         view_pager.adapter = adapterViewPager
 
         val tabs: TabLayout = findViewById(R.id.view_pager_tab)
@@ -64,45 +64,9 @@ class MainActivity : AppCompatActivity() {
             ),
             100
         )
-
-        button_picker_1.setOnClickListener { filePicker.openFilePicker(this) }
-        button_picker_2.setOnClickListener { filePicker.openSaveFile(this, "file") }
-        button_encrypt_action.setOnClickListener { onEncryptButton() }
     }
 
-    private fun onEncryptButton() {
-        val mode: Boolean = radio_encrypt.isChecked
-        val password = password.text.toString()
 
-        if (radio_aes.isChecked) {
-            encryptor = AESEncryptor()
-        } else if (radio_des.isChecked) {
-            encryptor = DESEncryptor()
-        }
-        val inputStream = contentResolver.openInputStream(Uri.parse(text_path_file.text.toString()))
-        val outputStream = contentResolver.openOutputStream(Uri.parse(text_path_file_decrypted.text.toString()))
-        if (mode) {
-            encryptor.encrypt(password, inputStream!!, outputStream!!)
-        } else {
-            encryptor.decrypt(password, inputStream!!, outputStream!!)
-        }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        when (item.itemId) {
-            R.id.action_settings -> return true
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -114,7 +78,6 @@ class MainActivity : AppCompatActivity() {
             2137 -> {
                 viewModel.encryptedFilePath = data?.data
                 text_path_file.text = Editable.Factory.getInstance().newEditable(data?.data.toString())
-                //text_path_file.text = Editable.Factory.getInstance().newEditable(ResourcesUtil.getPath(this, Uri.parse(data?.data.toString())))
             }
             2138 -> {
                 viewModel.decryptedFilePath = data?.data

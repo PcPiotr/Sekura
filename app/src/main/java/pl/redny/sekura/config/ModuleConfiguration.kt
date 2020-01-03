@@ -18,3 +18,11 @@ val mainActivityModules = module {
     single { AESEncryptor() } bind Encryptor::class
     single { DESEncryptor() }
 }
+
+val tab1 = module {
+    single { ModuleConfiguration() }
+    single { EncryptionService(listOf(AESEncryptor())) }
+    single { AndroidFilePicker() } bind FilePicker::class
+    single { AESEncryptor() } bind Encryptor::class
+    single { DESEncryptor() }
+}

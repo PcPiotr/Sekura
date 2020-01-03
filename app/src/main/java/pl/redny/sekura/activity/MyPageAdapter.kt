@@ -1,10 +1,13 @@
 package pl.redny.sekura.activity
 
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import pl.redny.sekura.R
+import pl.redny.sekura.util.ResourcesUtil
 
-class MyPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class MyPageAdapter(fm: FragmentManager, var activity: AppCompatActivity) : FragmentPagerAdapter(fm) {
     private val NUM_ITEMS = 4
 
     override fun getItem(position: Int): Fragment {
@@ -23,10 +26,10 @@ class MyPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
-            0 -> "1"
-            1 -> "2"
-            2 -> "3"
-            3 -> "4"
+            0 -> ResourcesUtil.getResource(activity.applicationContext, R.string.tab_text_1)
+            1 -> ResourcesUtil.getResource(activity.applicationContext, R.string.tab_text_2)
+            2 -> ResourcesUtil.getResource(activity.applicationContext, R.string.tab_text_3)
+            3 -> ResourcesUtil.getResource(activity.applicationContext, R.string.tab_text_4)
             else -> null!!
         }
     }
