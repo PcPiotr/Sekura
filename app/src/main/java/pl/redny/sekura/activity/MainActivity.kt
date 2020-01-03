@@ -58,12 +58,9 @@ class MainActivity : AppCompatActivity() {
             100
         )
 
-        if (!AppLock.unlockIfRequired(this)) {
+        if (AppLock.isEnrolled(this)) {
             val intent = Intent(this, UnlockActivity::class.java)
             startActivityForResult(intent, AppLock.REQUEST_CODE_UNLOCK)
-        } else {
-            val intent = Intent(this, LockCreationActivity::class.java)
-            startActivityForResult(intent, AppLock.REQUEST_CODE_LOCK_CREATION)
         }
 
     }

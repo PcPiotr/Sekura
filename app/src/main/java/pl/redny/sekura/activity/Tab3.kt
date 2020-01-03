@@ -26,6 +26,7 @@ class Tab3 : Fragment() {
     override fun onStart() {
         super.onStart()
         button_pin.setOnClickListener { setAuthButton() }
+        button_pin_reset.setOnClickListener { resetAuthButton() }
     }
 
     private fun setAuthButton() {
@@ -34,6 +35,7 @@ class Tab3 : Fragment() {
     }
 
     fun resetAuthButton() {
-        //AppLock.isUnlockRequired = true;
+        AppLock.getInstance(activity)
+            .invalidateEnrollments()
     }
 }
