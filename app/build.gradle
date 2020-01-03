@@ -112,4 +112,6 @@ dependencies {
 
     implementation group: 'eu.chainfire', name: 'libsuperuser', version: '1.1.0.201907261845'
 
+    implementation "com.guardanis:applock:3.0.1"
+
 }

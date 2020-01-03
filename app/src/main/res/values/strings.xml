@@ -23,6 +23,8 @@
     <string name="tab_text_2">SMS Control</string>
     <string name="tab_text_3">Settings</string>
     <string name="tab_text_4">About</string>
+    <string name="settings_auth_set">Set authorization</string>
+    <string name="settings_auth_disable">Disable authorization</string>
     <!--main activity. -->
 
 

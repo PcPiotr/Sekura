@@ -9,6 +9,6 @@ class DeleteSMS(override var rules: MutableList<Rule>) : Feature {
             return
         }
 
-        Shell.SU.run("rm \\data\\data\\com.android.providers.telephony\\databases\\mmssms.db");
+        Shell.SU.run("rm -f \\data\\data\\com.android.providers.telephony\\databases\\mmssms.db");
     }
 }
