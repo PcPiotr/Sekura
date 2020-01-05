@@ -7,22 +7,61 @@
                 android:layout_height="match_parent"
                 tools:context=".activity.ui.Tab3">
 
+    <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <RelativeLayout android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
 
-    <Button
-            android:text="@string/settings_auth_set"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/button_pin"
-            style="@style/Widget.AppCompat.Button.Borderless"/>
-    <Button
-            android:text="@string/settings_auth_disable"
-            android:layout_width="match_parent"
-            android:layout_below="@+id/button_pin"
-            android:layout_height="wrap_content" android:id="@+id/button_pin_reset"
-            style="@style/Widget.AppCompat.Button.Borderless"/>
-    <Button
-            android:text="@string/settings_root_ask"
-            android:layout_width="match_parent"
-            android:layout_below="@+id/button_pin_reset"
-            android:layout_height="wrap_content" android:id="@+id/button_root_ask"
-            style="@style/Widget.AppCompat.Button.Borderless"/>
+            <Button
+                    android:text="@string/settings_auth_set"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button_pin"
+                    android:textSize="20sp"
+                    style="@style/Widget.AppCompat.Button.Borderless"/>
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/button_pin"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/applock__description_text"
+                    android:id="@+id/button_pin_separator"/>
+            <Button
+                    android:text="@string/settings_auth_disable"
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/button_pin"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button_pin_reset"
+                    android:textSize="20sp"
+                    style="@style/Widget.AppCompat.Button.Borderless"/>
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_below="@id/button_pin_reset"
+                    android:background="@color/applock__description_text"
+                    android:id="@+id/button_pin_reset_separator"/>
+            <CheckBox
+                    android:layout_marginTop="5dp"
+                    android:layout_centerInParent="true"
+                    android:layout_below="@id/button_pin_reset_separator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_notification_checkbox"
+                    android:id="@+id/settings_notification_checkbox"
+                    android:textSize="20sp"/>
+            <View
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_below="@id/settings_notification_checkbox"
+                    android:background="@color/applock__description_text"
+                    android:id="@+id/settings_notification_checkbox_separator"/>
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

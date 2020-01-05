@@ -1,15 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Sekura</string>
     <string name="placeholder_tbd" translatable="false">TBD</string>
-    <string name="action_file_pick">Pick file</string>
-    <string name="mode_decrypt">Decrypt</string>
-    <string name="mode_encrypt">Encrypt</string>
-    <string name="action_encryption">Start</string>
+    <string name="encryption_file_pick">Pick file</string>
+    <string name="encryption_mode_decrypt">Decrypt</string>
+    <string name="encryption_mode_encrypt">Encrypt</string>
+    <string name="encryption_encryption">Start</string>
     <string name="title_activity_main" translatable="false">Sekura</string>
-    <string name="tab_text_1">Encryption</string>
-    <string name="tab_text_2">SMS Control</string>
-    <string name="tab_text_3">Settings</string>
-    <string name="tab_text_4">About</string>
+    <string name="encryption_tab">Encryption</string>
+    <string name="control_tab">SMS Control</string>
+    <string name="settings_tab">Settings</string>
+    <string name="about_tab">About</string>
     <string name="settings_auth_set">Set authorization</string>
     <string name="settings_auth_disable">Disable authorization</string>
     <!--main activity. -->
@@ -49,5 +49,21 @@
     <string name="applock__fingerprint_error_hardware">Missing fingerprint hardware?</string>
     <string name="applock__fingerprint_error_permission">Fingerprint permission required.</string>
     <string name="applock__fingerprint_error_permission_multiple">Fingerprint permission denied. Please enable fingerprint support in your system settings.</string>
+
+
     <string name="settings_root_ask">Root</string>
+    <string name="encryption_file_input_hint">Input file</string>
+    <string name="encryption_file_output_hint">Output File</string>
+    <string name="encryption_password_hint">Password</string>
+    <string name="encryption_mode_text">Mode</string>
+    <string name="encryption_algorithm_text">Algorithm</string>
+    <string name="encryption_default">Default</string>
+    <string name="control_sentence">Sentence</string>
+    <string name="control_remote_location">Remote location</string>
+    <string name="control_remote_location_text">"Receive data about the current location of the device.\nRequired permissions: User location. "</string>
+    <string name="control_global">Remote control</string>
+    <string name="encryption_text">"Encrypt confidential data stored on your device.\nRequired permissions: Write/Read Storage. "</string>
+    <string name="encryption_global">Encryption</string>
+    <string name="control_text">"Remotely control the device. Trusted phone numbers can be set in the settings.\nRequired permissions: SMS Read/Write access. "</string>
+    <string name="settings_notification_checkbox">Foreground service notification</string>
 </resources>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_file_pick">Wybierz plik</string>
-    <string name="mode_encrypt">Szyfrowanie</string>
-    <string name="mode_decrypt">Deszyfrowanie</string>
-    <string name="action_encryption">Wykonaj</string>
-    <string name="tab_text_1">Szyfrowanie</string>
-    <string name="tab_text_2">Sterowanie SMS</string>
-    <string name="tab_text_3">Ustawienia</string>
-    <string name="tab_text_4">Informacje</string>
+    <string name="encryption_file_pick">Wybierz plik</string>
+    <string name="encryption_mode_encrypt">Szyfrowanie</string>
+    <string name="encryption_mode_decrypt">Deszyfrowanie</string>
+    <string name="encryption_encryption">Wykonaj</string>
+    <string name="encryption_tab">Szyfrowanie</string>
+    <string name="control_tab">Sterowanie SMS</string>
+    <string name="settings_tab">Ustawienia</string>
+    <string name="about_tab">Informacje</string>
     <string name="settings_auth_disable">Wyłącz uwierzytelnianie</string>
     <string name="settings_auth_set">Ustaw uwierzytelnianie</string>
     <string name="applock__description_chooser">Wybierz metodę uwierzytelniania.</string>
@@ -15,8 +15,7 @@
     <string name="applock__create_chooser_option_fingerprint">Odblokowanie odciskiem</string>
     <string name="applock__description_confirm">Powtórz kod PIN.</string>
     <string name="applock__description_create_fingerprint">Zeskanuj odcisk aby zabezpieczyć aplikację.</string>
-    <string name="applock__description_create_fingerprint_paused">Anulowano uwierzytelnienie. Zrestartuj aplikację.
-    </string>
+    <string name="applock__description_create_fingerprint_paused">Anulowano uwierzytelnienie. Zrestartuj aplikację.</string>
     <string name="applock__description_create_pin">Wpisz PIN aby zabezpieczyć aplikację.</string>
     <string name="applock__description_create_pin_reattempt">Wpisano różne PINy. Spróbuj ponownie.</string>
     <string name="applock__description_unlock_fingerprint">Zeskanuj odcisk aby odblokować.</string>
@@ -27,14 +26,28 @@
     <string name="applock__fingerprint_error_none">Brak odcisków! Dodaj je w ustawieniach systemowych.</string>
     <string name="applock__fingerprint_error_not_enrolled">Nie skonfigurowano odblokowywania odciskiem.</string>
     <string name="applock__fingerprint_error_permission">Potrzeba uprawnienia odcisków.</string>
-    <string name="applock__fingerprint_error_permission_multiple">Brak uprawnienia odcisków. Włącz je w ustawieniach
-        systemowych.
-    </string>
+    <string name="applock__fingerprint_error_permission_multiple">Brak uprawnienia odcisków. Włącz je w ustawieniach systemowych.</string>
     <string name="applock__fingerprint_error_unknown">To nie powinno się zdarzyć.</string>
     <string name="applock__fingerprint_error_unrecognized">Nie rozpoznano odcisku.</string>
     <string name="applock__toast_unlock_required">Nie możesz tego zrobić.</string>
     <string name="applock__unlock_error_insufficient_selection">Zła ilość cyfr! Spróbuj ponownie.</string>
     <string name="applock__unlock_error_match_failed">Niepoprawny PIN.</string>
     <string name="applock__unlock_error_no_matching_pin_found">Brak zapisanych PINów.</string>
-    <string name="applock__unlock_error_retry_limit_exceeded">Zbyt dużo prób. Spróbuj ponownie za: %1$s.</string>
+    <string name="applock__unlock_error_retry_limit_exceeded">Zbyt wiele prób. Spróbuj ponownie za: %1$s.</string>
+    <string name="encryption_file_input_hint">Plik wejściowy</string>
+    <string name="encryption_file_output_hint">Plik wyjściowy</string>
+    <string name="encryption_password_hint">Hasło</string>
+    <string name="encryption_default">Wyczyść</string>
+    <string name="encryption_algorithm_text">Algorytm</string>
+    <string name="encryption_mode_text">Tryb</string>
+    <string name="control_sentence">Fraza</string>
+    <string name="control_remote_location">Zdalna lokalizacja</string>
+    <string name="control_remote_location_text">Otrzymuj dane o aktualnej lokalizacji urządzenia. \nWymagane uprawnienia: Lokalizacja użytkownika.</string>
+    <string name="control_global">Zdalna kontrola urządzenia</string>
+    <string name="encryption_global">Szyfrowanie</string>
+    <string name="encryption_text">"Szyfruj poufne dane przechowywane na urządzeniu. Wskaż plik który chcesz
+        zaszyfować/deszyfrować oraz plik wyjściowy.\\nWymagane uprawnienia: Zapis i odczyt pamięci wewnętrznej oraz
+        zewnętrznej. "
+    </string>
+    <string name="control_text">Zdalnie steruj urządzeniem. Zaufane numery telefonu można ustalić w ustawieniach.</string>
 </resources>

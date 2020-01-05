@@ -2,7 +2,6 @@ package pl.redny.sekura.activity.view.filePicker
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import pl.redny.sekura.R
 import pl.redny.sekura.util.ResourcesUtil
 
@@ -16,7 +15,7 @@ class AndroidFilePicker : FilePicker {
             Intent.createChooser(
                 intent, ResourcesUtil.getResource(
                     activity,
-                    R.string.action_file_pick
+                    R.string.encryption_file_pick
                 )
             ), 2137
         )
@@ -33,7 +32,7 @@ class AndroidFilePicker : FilePicker {
             Intent.createChooser(
                 intent, ResourcesUtil.getResource(
                     activity,
-                    R.string.action_file_pick
+                    R.string.encryption_file_pick
                 )
             ), 2138
         )
