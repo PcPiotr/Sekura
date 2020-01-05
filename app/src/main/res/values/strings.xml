@@ -49,4 +49,5 @@
     <string name="applock__fingerprint_error_hardware">Missing fingerprint hardware?</string>
     <string name="applock__fingerprint_error_permission">Fingerprint permission required.</string>
     <string name="applock__fingerprint_error_permission_multiple">Fingerprint permission denied. Please enable fingerprint support in your system settings.</string>
+    <string name="settings_root_ask">Root</string>
 </resources>

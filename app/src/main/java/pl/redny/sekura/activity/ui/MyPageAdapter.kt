@@ -1,4 +1,4 @@
-package pl.redny.sekura.activity
+package pl.redny.sekura.activity.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
