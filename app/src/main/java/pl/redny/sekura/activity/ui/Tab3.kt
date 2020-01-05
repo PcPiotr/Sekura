@@ -28,7 +28,6 @@ class Tab3 : Fragment() {
         super.onStart()
         button_pin.setOnClickListener { setAuthButton() }
         button_pin_reset.setOnClickListener { resetAuthButton() }
-        button_root_ask.setOnClickListener { askForRoot() }
     }
 
     private fun setAuthButton() {

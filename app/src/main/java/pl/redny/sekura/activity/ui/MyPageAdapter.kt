@@ -26,10 +26,10 @@ class MyPageAdapter(fm: FragmentManager, var activity: AppCompatActivity) : Frag
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
-            0 -> ResourcesUtil.getResource(activity.applicationContext, R.string.tab_text_1)
-            1 -> ResourcesUtil.getResource(activity.applicationContext, R.string.tab_text_2)
-            2 -> ResourcesUtil.getResource(activity.applicationContext, R.string.tab_text_3)
-            3 -> ResourcesUtil.getResource(activity.applicationContext, R.string.tab_text_4)
+            0 -> ResourcesUtil.getResource(activity.applicationContext, R.string.encryption_tab)
+            1 -> ResourcesUtil.getResource(activity.applicationContext, R.string.control_tab)
+            2 -> ResourcesUtil.getResource(activity.applicationContext, R.string.settings_tab)
+            3 -> ResourcesUtil.getResource(activity.applicationContext, R.string.about_tab)
             else -> null!!
         }
     }
