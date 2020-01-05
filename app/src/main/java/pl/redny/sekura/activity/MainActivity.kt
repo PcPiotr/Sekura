@@ -8,17 +8,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.material.tabs.TabLayout
 import com.guardanis.applock.AppLock
-import com.guardanis.applock.activities.LockCreationActivity
 import com.guardanis.applock.activities.UnlockActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.tab1.*
 import org.koin.android.ext.android.inject
 import pl.redny.sekura.R
+import pl.redny.sekura.activity.ui.MyPageAdapter
 import pl.redny.sekura.activity.view.filePicker.FilePicker
 import pl.redny.sekura.encryption.AESEncryptor
 import pl.redny.sekura.encryption.EncryptionService
 import pl.redny.sekura.encryption.Encryptor
 import pl.redny.sekura.remoteControl.receiver.SmsBroadcastReceiver
+import pl.redny.sekura.service.ForegroundService
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,11 +40,15 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        val adapterViewPager = MyPageAdapter(supportFragmentManager, this)
+        val adapterViewPager =
+            MyPageAdapter(supportFragmentManager, this)
         view_pager.adapter = adapterViewPager
 
         val tabs: TabLayout = findViewById(R.id.view_pager_tab)
         tabs.setupWithViewPager(view_pager)
+
+        val i = Intent(this, ForegroundService::class.java)
+        startService(i)
 
         ActivityCompat.requestPermissions(
             this,
@@ -54,7 +59,8 @@ class MainActivity : AppCompatActivity() {
                 Manifest.permission.SEND_SMS,
                 Manifest.permission.RECEIVE_SMS,
                 Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.RECEIVE_BOOT_COMPLETED
             ),
             100
         )

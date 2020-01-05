@@ -5,7 +5,7 @@
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".activity.Tab3">
+                tools:context=".activity.ui.Tab3">
 
 
     <Button
@@ -18,5 +18,11 @@
             android:layout_width="match_parent"
             android:layout_below="@+id/button_pin"
             android:layout_height="wrap_content" android:id="@+id/button_pin_reset"
+            style="@style/Widget.AppCompat.Button.Borderless"/>
+    <Button
+            android:text="@string/settings_root_ask"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/button_pin_reset"
+            android:layout_height="wrap_content" android:id="@+id/button_root_ask"
             style="@style/Widget.AppCompat.Button.Borderless"/>
 </RelativeLayout>

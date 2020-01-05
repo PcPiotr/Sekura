@@ -1,4 +1,4 @@
-package pl.redny.sekura.activity
+package pl.redny.sekura.activity.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import com.guardanis.applock.dialogs.LockCreationDialogBuilder
 import kotlinx.android.synthetic.main.tab1.*
 import kotlinx.android.synthetic.main.tab3.*
 import pl.redny.sekura.R
+import pl.redny.sekura.util.SuperUser
 
 class Tab3 : Fragment() {
 
@@ -27,6 +28,7 @@ class Tab3 : Fragment() {
         super.onStart()
         button_pin.setOnClickListener { setAuthButton() }
         button_pin_reset.setOnClickListener { resetAuthButton() }
+        button_root_ask.setOnClickListener { askForRoot() }
     }
 
     private fun setAuthButton() {
@@ -34,8 +36,13 @@ class Tab3 : Fragment() {
             .show()
     }
 
-    fun resetAuthButton() {
+    private fun resetAuthButton() {
         AppLock.getInstance(activity)
             .invalidateEnrollments()
+    }
+
+    private fun askForRoot() {
+        var shell = SuperUser()
+        shell.execute()
     }
 }

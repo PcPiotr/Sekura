@@ -1,19 +1,16 @@
-package pl.redny.sekura.activity
+package pl.redny.sekura.activity.ui
 
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.tab1.*
-import org.koin.android.ext.android.inject
-import org.koin.core.context.startKoin
 import pl.redny.sekura.R
+import pl.redny.sekura.activity.ViewModel
 import pl.redny.sekura.activity.view.filePicker.AndroidFilePicker
 import pl.redny.sekura.activity.view.filePicker.FilePicker
-import pl.redny.sekura.config.mainActivityModules
 import pl.redny.sekura.encryption.AESEncryptor
 import pl.redny.sekura.encryption.DESEncryptor
 import pl.redny.sekura.encryption.Encryptor

@@ -92,23 +92,12 @@ dependencies {
     // Koin AndroidX Experimental features
     implementation "org.koin:koin-androidx-ext:2.0.1"
 
-/*    kapt 'javax.xml.bind:jaxb-api:2.3.1'
-    kapt 'com.sun.xml.bind:jaxb-core:2.3.0.1'
-    kapt 'com.sun.xml.bind:jaxb-impl:2.3.2'
-
-    annotationProcessor 'javax.xml.bind:jaxb-api:2.3.1'
-    annotationProcessor 'com.sun.xml.bind:jaxb-core:2.3.0.1'
-    annotationProcessor 'com.sun.xml.bind:jaxb-impl:2.3.2'*/
-
-    //implementation 'com.github.stericson:roottools:5.0'
     def fragment_version = "1.1.0"
 
     // Java language implementation
     implementation "androidx.fragment:fragment:$fragment_version"
     // Kotlin
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
-    // Testing Fragments in Isolation
-    //implementation "androidx.fragment:fragment-testing:$fragment_version"
 
     implementation group: 'eu.chainfire', name: 'libsuperuser', version: '1.1.0.201907261845'
 
