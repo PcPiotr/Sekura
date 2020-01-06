@@ -35,9 +35,9 @@ class ForegroundService : Service() {
             0, notificationIntent, 0
         )
         val notification: Notification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("Sekura")
-            .setContentText("")
-            .setSmallIcon(R.drawable.sym_def_app_icon)
+            .setContentTitle("Sekura process is running...")
+            .setContentText("You can disable this notification in App info > Notifications.")
+            .setSmallIcon(R.drawable.btn_star)
             .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_MIN)
             .build()
@@ -54,7 +54,7 @@ class ForegroundService : Service() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val serviceChannel = NotificationChannel(
                 CHANNEL_ID,
-                "Foreground Sekura Service Channel",
+                "Foreground Sekura Service",
                 NotificationManager.IMPORTANCE_MIN
             )
             serviceChannel.setShowBadge(false);

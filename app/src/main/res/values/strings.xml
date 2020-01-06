@@ -66,4 +66,15 @@
     <string name="encryption_global">Encryption</string>
     <string name="control_text">"Remotely control the device. Trusted phone numbers can be set in the settings.\nRequired permissions: SMS Read/Write access. "</string>
     <string name="settings_notification_checkbox">Foreground service notification</string>
+    <string name="encryption_input_error">Error: Incorrect input!</string>
+    <string name="encryption_output_error">Error: Incorrect output!</string>
+    <string name="encryption_incorrect_password_AES">Error: Password must be 16 characters long!</string>
+    <string name="encryption_incorrect_password_DES">Error: Password must be 8 characters long!</string>
+    <string name="encryption_successful">Encryption successful!</string>
+    <string name="control_no_permission">Can\'t get required permission!</string>
+    <string name="ask_permission">Permission</string>
+    <string name="remote_sms_erasure">Remote SMS erasure</string>
+    <string name="remote_file_erasure">Remote files erasure</string>
+    <string name="settings_grant_permissions">Grant permissions</string>
+    <string name="sms_control_phone_number">Phone number</string>
 </resources>

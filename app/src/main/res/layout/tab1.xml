@@ -13,21 +13,12 @@
         <RelativeLayout android:layout_width="fill_parent"
                         android:layout_height="wrap_content">
 
-            <CheckBox
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/encryption_global"
-                    android:textSize="24sp"
-                    android:id="@+id/encryption_checkbox"/>
             <TextView
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/encryption_checkbox"
                     android:text="@string/encryption_text"
                     android:id="@+id/encryption_text"/>
             <View
