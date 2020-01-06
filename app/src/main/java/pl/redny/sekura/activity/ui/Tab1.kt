@@ -11,9 +11,8 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.tab1.*
+import org.koin.android.ext.android.inject
 import pl.redny.sekura.R
-import pl.redny.sekura.activity.ViewModel
-import pl.redny.sekura.activity.view.filePicker.AndroidFilePicker
 import pl.redny.sekura.activity.view.filePicker.FilePicker
 import pl.redny.sekura.encryption.AESEncryptor
 import pl.redny.sekura.encryption.DESEncryptor
@@ -22,9 +21,7 @@ import pl.redny.sekura.util.ResourcesUtil
 
 class Tab1 : Fragment() {
 
-    private val filePicker: FilePicker = AndroidFilePicker()
-
-    private val viewModel = ViewModel()
+    private val filePicker: FilePicker by inject()
 
     private var encryptor: Encryptor = AESEncryptor()
 

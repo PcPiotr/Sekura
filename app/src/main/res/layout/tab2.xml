@@ -155,13 +155,43 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/remote_file_erasure_sentence"
                     android:id="@+id/remote_file_erasure_list_text"/>
+            <EditText
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/remote_file_erasure_list_text"
+                    android:inputType="textPersonName"
+                    android:ems="12"
+                    android:hint="@string/encryption_file_input_hint"
+                    android:id="@+id/remote_text_path_file"/>
+            <Button
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/remote_file_erasure_list_text"
+                    android:layout_toEndOf="@+id/remote_text_path_file"
+                    android:text="@string/encryption_file_pick"
+                    android:id="@+id/remote_button_picker"/>
+            <Button
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/remote_button_picker"
+                    android:layout_toEndOf="@+id/text_path_file"
+                    android:text="DELETE"
+                    android:id="@+id/remote_button_delete"/>
             <ListView
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/remote_file_erasure_list_text"
+                    android:layout_below="@id/remote_button_delete"
                     android:id="@+id/remote_file_erasure_list_view">
             </ListView>
             <View
