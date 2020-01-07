@@ -9,31 +9,29 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.tab2.*
 import org.koin.android.ext.android.inject
 import pl.redny.sekura.R
+import pl.redny.sekura.activity.ViewModel
 import pl.redny.sekura.activity.view.filePicker.FilePicker
 import pl.redny.sekura.remoteControl.feature.DeleteFile
 import pl.redny.sekura.remoteControl.feature.DeleteSMS
 import pl.redny.sekura.remoteControl.feature.SharePhoneLocation
 
 class Tab2 : Fragment() {
-
-    private val deleteFile: DeleteFile by inject()
-
-    private val deleteSms: DeleteSMS by inject()
-
-    private val sharePhoneLocation: SharePhoneLocation by inject()
-
     private val filePicker: FilePicker by inject()
+
+    private val viewModel: ViewModel by inject()
+
+    private var toDelete: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.tab2, container, false)
     }
 
@@ -71,6 +69,9 @@ class Tab2 : Fragment() {
         remote_location_gps.setOnCheckedChangeListener { compoundButton, b -> feature1Change(editor) }
         remote_sms_erasure.setOnCheckedChangeListener { compoundButton, b -> feature2Change(editor) }
         remote_file_erasure.setOnCheckedChangeListener { compoundButton, b -> feature3Change(editor) }
+        remote_button_add.setOnClickListener { addToSet(editor, sharedPreferences) }
+        remote_button_delete.setOnClickListener { deleteElement(editor, sharedPreferences) }
+        remote_path_file_picker.setOnClickListener { filePicker.openFilePicker(activity!!, 2139) }
         remote_location_sentence.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 onFeature1SentenceChange(editor)
@@ -110,7 +111,22 @@ class Tab2 : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
+
+        val listViewAdapter = ArrayAdapter<String>(
+            context!!,
+            R.layout.phone_list_element,
+            sharedPreferences.getStringSet("fileSet", setOf())!!.toMutableList()
+        )
+        remote_file_erasure_list_view.adapter = listViewAdapter
+
+        remote_file_erasure_list_view.setOnItemClickListener { parent, view, position, id -> onListClick(position) }
+
     }
+
+    private fun onListClick(position: Int) {
+        toDelete = remote_file_erasure_list_view.adapter.getItem(position) as String
+    }
+
 
     private fun feature1Change(editor: SharedPreferences.Editor) {
         editor.putBoolean("feature1", remote_location_gps.isChecked)
@@ -145,5 +161,35 @@ class Tab2 : Fragment() {
     private fun onFeature3SentenceChange(editor: SharedPreferences.Editor) {
         editor.putString("sentence3", remote_file_erasure_sentence.text.toString())
         editor.apply()
+    }
+
+    private fun deleteElement(editor: SharedPreferences.Editor, sharedPreferences: SharedPreferences) {
+        val listView = sharedPreferences.getStringSet("fileSet", setOf())!!.toMutableList()
+        listView.remove(toDelete)
+        editor.putStringSet("fileSet", listView.toSet())
+        editor.apply()
+        val listViewAdapter = ArrayAdapter<String>(
+            context!!,
+            R.layout.phone_list_element,
+            sharedPreferences.getStringSet("fileSet", setOf())!!.toMutableList()
+        )
+        remote_file_erasure_list_view.adapter = listViewAdapter
+
+        remote_file_erasure_list_view.invalidateViews()
+    }
+
+    private fun addToSet(editor: SharedPreferences.Editor, sharedPreferences: SharedPreferences) {
+        val listView = sharedPreferences.getStringSet("fileSet", setOf())!!.toMutableList()
+        listView.add(viewModel.filePath.toString())
+        editor.putStringSet("fileSet", listView.toSet())
+        editor.apply()
+        val listViewAdapter = ArrayAdapter<String>(
+            context!!,
+            R.layout.phone_list_element,
+            sharedPreferences.getStringSet("fileSet", setOf())!!.toMutableList()
+        )
+        remote_file_erasure_list_view.adapter = listViewAdapter
+
+        remote_file_erasure_list_view.invalidateViews()
     }
 }

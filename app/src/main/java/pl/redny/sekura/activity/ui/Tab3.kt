@@ -12,6 +12,7 @@ import com.guardanis.applock.AppLock
 import com.guardanis.applock.dialogs.LockCreationDialogBuilder
 import kotlinx.android.synthetic.main.tab3.*
 import pl.redny.sekura.R
+import pl.redny.sekura.util.SuperUser
 
 class Tab3 : Fragment() {
 
@@ -20,25 +21,15 @@ class Tab3 : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.tab3, container, false)
     }
 
     override fun onStart() {
         super.onStart()
-        val sharedPreferences: SharedPreferences = context!!.getSharedPreferences("Preferences", MODE_PRIVATE)
-        if (sharedPreferences.getBoolean("foregroundEnabled", true)) {
-
-        }
-        val editor = sharedPreferences.edit()
         button_pin.setOnClickListener { setAuthButton() }
         button_pin_reset.setOnClickListener { resetAuthButton() }
         button_ask_permissions.setOnClickListener { grantPermissions() }
-    }
-
-    private fun foregroundChange(editor: SharedPreferences.Editor) {
-        //editor.putBoolean("foregroundEnabled", settings_notification_checkbox.isChecked)
-        //editor.apply()
+        button_ask_permissions_root.setOnClickListener { askForRoot() }
     }
 
     private fun setAuthButton() {
@@ -65,6 +56,10 @@ class Tab3 : Fragment() {
             ),
             100
         )
-
     }
+
+    private fun askForRoot() {
+        SuperUser().execute()
+    }
+
 }

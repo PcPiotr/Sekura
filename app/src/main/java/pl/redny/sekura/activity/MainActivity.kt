@@ -11,28 +11,14 @@ import com.guardanis.applock.AppLock
 import com.guardanis.applock.activities.UnlockActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.tab1.*
+import kotlinx.android.synthetic.main.tab2.*
 import org.koin.android.ext.android.inject
 import pl.redny.sekura.R
 import pl.redny.sekura.activity.ui.MyPageAdapter
-import pl.redny.sekura.activity.view.filePicker.FilePicker
-import pl.redny.sekura.encryption.AESEncryptor
-import pl.redny.sekura.encryption.EncryptionService
-import pl.redny.sekura.encryption.Encryptor
-import pl.redny.sekura.remoteControl.receiver.SmsBroadcastReceiver
 import pl.redny.sekura.service.ForegroundService
 
-
 class MainActivity : AppCompatActivity() {
-
-    private val encryptionService: EncryptionService by inject()
-
-    private val filePicker: FilePicker by inject()
-
-    private val viewModel = ViewModel()
-
-    private val broadcastReceiver = SmsBroadcastReceiver()
-
-    private var encryptor: Encryptor = AESEncryptor()
+    private val viewModel: ViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme_NoActionBar);
@@ -72,7 +58,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode != RESULT_OK) {
@@ -87,6 +72,10 @@ class MainActivity : AppCompatActivity() {
             2138 -> {
                 viewModel.decryptedFilePath = data?.data
                 text_path_file_decrypted.text = Editable.Factory.getInstance().newEditable(data?.data.toString())
+            }
+            2139 -> {
+                viewModel.filePath = data?.data
+                remote_path_file.text = Editable.Factory.getInstance().newEditable(data?.data.toString())
             }
         }
     }

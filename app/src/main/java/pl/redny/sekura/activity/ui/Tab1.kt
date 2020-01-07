@@ -18,6 +18,9 @@ import pl.redny.sekura.encryption.AESEncryptor
 import pl.redny.sekura.encryption.DESEncryptor
 import pl.redny.sekura.encryption.Encryptor
 import pl.redny.sekura.util.ResourcesUtil
+import java.io.FileNotFoundException
+import java.io.InputStream
+import java.io.OutputStream
 
 class Tab1 : Fragment() {
 
@@ -35,12 +38,11 @@ class Tab1 : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        button_picker_1.setOnClickListener { filePicker.openFilePicker(activity!!) }
-        button_picker_2.setOnClickListener { filePicker.openSaveFile(activity!!, "file") }
+        button_picker_1.setOnClickListener { filePicker.openFilePicker(activity!!, 2137) }
+        button_picker_2.setOnClickListener { filePicker.openSaveFile(activity!!, "file", 2138) }
         button_encrypt_action.setOnClickListener { onEncryptButton() }
         button_default_action.setOnClickListener { onDefaultButton() }
     }
-
 
     private fun toast(StringValue: Int) {
         Toast.makeText(
@@ -69,16 +71,18 @@ class Tab1 : Fragment() {
             return
         }
 
-        val inputStream = activity!!.contentResolver.openInputStream(Uri.parse(text_path_file.text.toString()))
-        val outputStream =
-            activity!!.contentResolver.openOutputStream(Uri.parse(text_path_file_decrypted.text.toString()))
-
-        if (inputStream == null) {
+        val inputStream: InputStream?
+        val outputStream: OutputStream?
+        try {
+            inputStream = activity!!.contentResolver.openInputStream(Uri.parse(text_path_file.text.toString()))
+        } catch (exception: FileNotFoundException) {
             toast(R.string.encryption_input_error)
             return
         }
-
-        if (outputStream == null) {
+        try {
+            outputStream =
+                activity!!.contentResolver.openOutputStream(Uri.parse(text_path_file_decrypted.text.toString()))
+        } catch (exception: FileNotFoundException) {
             toast(R.string.encryption_output_error)
             return
         }
@@ -98,9 +102,9 @@ class Tab1 : Fragment() {
         }
 
         if (mode) {
-            encryptor.encrypt(password, inputStream, outputStream)
+            encryptor.encrypt(password, inputStream!!, outputStream!!)
         } else {
-            encryptor.decrypt(password, inputStream, outputStream)
+            encryptor.decrypt(password, inputStream!!, outputStream!!)
         }
         toast(R.string.encryption_successful)
     }

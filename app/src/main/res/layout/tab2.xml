@@ -164,7 +164,7 @@
                     android:inputType="textPersonName"
                     android:ems="12"
                     android:hint="@string/encryption_file_input_hint"
-                    android:id="@+id/remote_text_path_file"/>
+                    android:id="@+id/remote_path_file"/>
             <Button
                     android:layout_marginEnd="20dp"
                     android:layout_marginTop="20dp"
@@ -172,28 +172,38 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/remote_file_erasure_list_text"
-                    android:layout_toEndOf="@+id/remote_text_path_file"
+                    android:layout_toEndOf="@+id/remote_path_file"
                     android:text="@string/encryption_file_pick"
-                    android:id="@+id/remote_button_picker"/>
+                    android:id="@+id/remote_path_file_picker"/>
             <Button
                     android:layout_marginEnd="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="20dp"
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/remote_button_picker"
-                    android:layout_toEndOf="@+id/text_path_file"
+                    android:layout_below="@id/remote_path_file_picker"
+                    android:layout_alignParentStart="true"
+                    android:text="ADD"
+                    android:id="@+id/remote_button_add"/>
+            <Button
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/remote_path_file_picker"
+                    android:layout_alignParentEnd="true"
                     android:text="DELETE"
                     android:id="@+id/remote_button_delete"/>
-            <ListView
+            <pl.redny.sekura.activity.ui.MyListView
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/remote_button_delete"
                     android:id="@+id/remote_file_erasure_list_view">
-            </ListView>
+            </pl.redny.sekura.activity.ui.MyListView>
             <View
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="10dp"

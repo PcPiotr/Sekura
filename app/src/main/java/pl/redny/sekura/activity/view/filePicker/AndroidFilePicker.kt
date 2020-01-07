@@ -6,7 +6,7 @@ import pl.redny.sekura.R
 import pl.redny.sekura.util.ResourcesUtil
 
 class AndroidFilePicker : FilePicker {
-    override fun openFilePicker(activity: Activity) {
+    override fun openFilePicker(activity: Activity, code: Int) {
         val intent = Intent()
             .setType("*/*")
             .setAction(Intent.ACTION_GET_CONTENT)
@@ -17,12 +17,12 @@ class AndroidFilePicker : FilePicker {
                     activity,
                     R.string.encryption_file_pick
                 )
-            ), 2137
+            ), code
         )
 
     }
 
-    override fun openSaveFile(activity: Activity, defaultSaveFile: String) {
+    override fun openSaveFile(activity: Activity, defaultSaveFile: String, code: Int) {
         val intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
             .addCategory(Intent.CATEGORY_OPENABLE)
             .setType("*/*")
@@ -34,7 +34,7 @@ class AndroidFilePicker : FilePicker {
                     activity,
                     R.string.encryption_file_pick
                 )
-            ), 2138
+            ), code
         )
     }
 }

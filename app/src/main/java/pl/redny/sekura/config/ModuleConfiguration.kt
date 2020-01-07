@@ -1,5 +1,6 @@
 package pl.redny.sekura.config
 
+import androidx.lifecycle.ViewModel
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import pl.redny.sekura.activity.view.filePicker.AndroidFilePicker
@@ -25,4 +26,5 @@ val mainActivityModules = module {
     single { DeleteFile(mutableListOf<Rule>()) }
     single { DeleteSMS(mutableListOf<Rule>()) }
     single { SharePhoneLocation(mutableListOf<Rule>(), SmsSender()) }
+    single { pl.redny.sekura.activity.ViewModel() }
 }
