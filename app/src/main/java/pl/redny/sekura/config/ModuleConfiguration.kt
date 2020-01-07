@@ -8,6 +8,11 @@ import pl.redny.sekura.encryption.EncryptionService
 import pl.redny.sekura.encryption.Encryptor
 import pl.redny.sekura.encryption.AESEncryptor
 import pl.redny.sekura.encryption.DESEncryptor
+import pl.redny.sekura.remoteControl.feature.DeleteFile
+import pl.redny.sekura.remoteControl.feature.DeleteSMS
+import pl.redny.sekura.remoteControl.feature.SharePhoneLocation
+import pl.redny.sekura.remoteControl.rule.Rule
+import pl.redny.sekura.remoteControl.sender.SmsSender
 
 class ModuleConfiguration
 
@@ -17,8 +22,7 @@ val mainActivityModules = module {
     single { AndroidFilePicker() } bind FilePicker::class
     single { AESEncryptor() } bind Encryptor::class
     single { DESEncryptor() }
-    
-}
-
-
+    single { DeleteFile(mutableListOf<Rule>()) }
+    single { DeleteSMS(mutableListOf<Rule>()) }
+    single { SharePhoneLocation(mutableListOf<Rule>(), SmsSender()) }
 }
