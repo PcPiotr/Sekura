@@ -2,6 +2,7 @@ package pl.redny.sekura.config
 
 import org.koin.dsl.bind
 import org.koin.dsl.module
+import pl.redny.sekura.activity.ViewModel
 import pl.redny.sekura.activity.view.filePicker.AndroidFilePicker
 import pl.redny.sekura.activity.view.filePicker.FilePicker
 import pl.redny.sekura.encryption.EncryptionService
@@ -11,6 +12,7 @@ import pl.redny.sekura.encryption.DESEncryptor
 import pl.redny.sekura.remoteControl.feature.DeleteFile
 import pl.redny.sekura.remoteControl.feature.DeleteSMS
 import pl.redny.sekura.remoteControl.feature.SharePhoneLocation
+import pl.redny.sekura.remoteControl.receiver.SmsBroadcastReceiver
 import pl.redny.sekura.remoteControl.sender.SmsSender
 
 class ModuleConfiguration
@@ -24,5 +26,6 @@ val mainActivityModules = module {
     single { DeleteFile() }
     single { DeleteSMS() }
     single { SharePhoneLocation(SmsSender()) }
-    single { pl.redny.sekura.activity.ViewModel() }
+    single { ViewModel() }
+    single { SmsBroadcastReceiver(get()) }
 }
