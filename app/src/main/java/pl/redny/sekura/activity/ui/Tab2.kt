@@ -16,9 +16,6 @@ import org.koin.android.ext.android.inject
 import pl.redny.sekura.R
 import pl.redny.sekura.activity.ViewModel
 import pl.redny.sekura.activity.view.filePicker.FilePicker
-import pl.redny.sekura.remoteControl.feature.DeleteFile
-import pl.redny.sekura.remoteControl.feature.DeleteSMS
-import pl.redny.sekura.remoteControl.feature.SharePhoneLocation
 
 class Tab2 : Fragment() {
     private val filePicker: FilePicker by inject()
@@ -53,15 +50,15 @@ class Tab2 : Fragment() {
         val sentence3 = sharedPreferences.getString("sentence3", "")
         remote_file_erasure_sentence.text = SpannableStringBuilder(sentence3)
 
-        if (sharedPreferences.getBoolean("feature1", true)) {
+        if (sharedPreferences.getBoolean("feature1", false)) {
             remote_location_gps.isChecked = true
         }
 
-        if (sharedPreferences.getBoolean("feature2", true)) {
+        if (sharedPreferences.getBoolean("feature2", false)) {
             remote_sms_erasure.isChecked = true
         }
 
-        if (sharedPreferences.getBoolean("feature3", true)) {
+        if (sharedPreferences.getBoolean("feature3", false)) {
             remote_file_erasure.isChecked = true
         }
 
@@ -179,6 +176,10 @@ class Tab2 : Fragment() {
     }
 
     private fun addToSet(editor: SharedPreferences.Editor, sharedPreferences: SharedPreferences) {
+        if (viewModel.filePath.toString() == "" || viewModel.filePath.toString() == " ") {
+            return
+        }
+
         val listView = sharedPreferences.getStringSet("fileSet", setOf())!!.toMutableList()
         listView.add(viewModel.filePath.toString())
         editor.putStringSet("fileSet", listView.toSet())

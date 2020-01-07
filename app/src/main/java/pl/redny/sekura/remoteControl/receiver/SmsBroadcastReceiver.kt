@@ -3,16 +3,18 @@ package pl.redny.sekura.remoteControl.receiver
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.provider.Telephony
 import pl.redny.sekura.remoteControl.feature.DeleteFile
+import pl.redny.sekura.remoteControl.feature.DeleteSMS
 import pl.redny.sekura.remoteControl.feature.SharePhoneLocation
-import pl.redny.sekura.remoteControl.rule.Rule
-import pl.redny.sekura.remoteControl.rule.TextRule
 import pl.redny.sekura.remoteControl.sender.SmsSender
 
 class SmsBroadcastReceiver() : BroadcastReceiver() {
+    val deleteFile: DeleteFile = DeleteFile()
 
+    val deleteSMS: DeleteSMS = DeleteSMS()
+
+    val sharePhoneLocation: SharePhoneLocation = SharePhoneLocation(SmsSender())
 
     override fun onReceive(context: Context?, intent: Intent) {
         if (intent.action == Telephony.Sms.Intents.SMS_RECEIVED_ACTION) {
@@ -23,33 +25,45 @@ class SmsBroadcastReceiver() : BroadcastReceiver() {
                 smsBody += smsMessage.messageBody
             }
 
+            val sharedPreferences = context!!.getSharedPreferences("Preferences", Context.MODE_PRIVATE)
             val parameters: HashMap<String, Any?> = hashMapOf(
                 "smsSender" to smsSender,
                 "smsBody" to smsBody,
-                "files" to listOf("content://media/external/images/media/251"),
+                "files" to sharedPreferences.getStringSet("fileSet", setOf())!!.toList(),
                 "context" to context
             )
 
-            //WIP af
-            var textRule1 = TextRule("Jezus")
-            var deleteFileTest = DeleteFile(mutableListOf(textRule1))
-            deleteFileTest.handle(parameters);
+            if (!smsSender.contains(sharedPreferences.getString("phoneNumber", "")!!)) {
+                return
+            }
 
-            var textRule2 = TextRule("Howard")
-            var sharePhoneLocation = SharePhoneLocation(mutableListOf(textRule2), SmsSender())
-            sharePhoneLocation.handle(parameters)
+            if ((sharedPreferences.getBoolean("feature1", false) && sharedPreferences.getString(
+                    "sentence1",
+                    ""
+                ) != "" && smsBody.contains(
+                    sharedPreferences.getString("sentence1", "")!!
+                ))
+            ) {
+                sharePhoneLocation.handle(parameters)
+            }
+            if ((sharedPreferences.getBoolean("feature2", false) && sharedPreferences.getString(
+                    "sentence2",
+                    ""
+                ) != "" && smsBody.contains(
+                    sharedPreferences.getString("sentence2", "")!!
+                ))
+            ) {
+                deleteSMS.handle(parameters)
+            }
+            if ((sharedPreferences.getBoolean("feature3", false) && sharedPreferences.getString(
+                    "sentence3",
+                    ""
+                ) != "" && smsBody.contains(
+                    sharedPreferences.getString("sentence3", "")!!
+                ))
+            ) {
+                deleteFile.handle(parameters)
+            }
         }
     }
-
-//    fun addRule(rule: Rule) {
-//        smsBroadcastRules.add(rule)
-//    }
-//
-//    fun removeRule(rule: Rule) {
-//        smsBroadcastRules.remove(rule)
-//    }
-//
-//    fun removeAt(value: Int) {
-//        smsBroadcastRules.removeAt(value)
-//    }
 }

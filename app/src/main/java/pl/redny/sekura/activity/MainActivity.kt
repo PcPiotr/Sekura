@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, UnlockActivity::class.java)
             startActivityForResult(intent, AppLock.REQUEST_CODE_UNLOCK)
         }
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
