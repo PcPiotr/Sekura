@@ -27,7 +27,6 @@ object ResourcesUtil {
                 if ("primary".equals(type, ignoreCase = true)) {
                     return Environment.getExternalStorageDirectory().toString() + "/" + split[1]
                 }
-                // TODO handle non-primary volumes
             } else if (isDownloadsDocument(uri)) {
                 val id = DocumentsContract.getDocumentId(uri)
                 val contentUri = ContentUris.withAppendedId(
@@ -55,11 +54,15 @@ object ResourcesUtil {
                     split[1]
                 )
                 return getDataColumn(context, contentUri, selection, selectionArgs)
+            } else {
+                // Nothing
             }
         } else if ("content".equals(uri.scheme, ignoreCase = true)) {
             return getDataColumn(context, uri, null, null)
         } else if ("file".equals(uri.scheme, ignoreCase = true)) {
             return uri.path
+        } else {
+            return null
         }
         return null
     }

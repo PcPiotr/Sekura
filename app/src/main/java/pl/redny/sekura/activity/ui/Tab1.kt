@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,10 @@ import java.io.InputStream
 import java.io.OutputStream
 
 class Tab1 : Fragment() {
+    /**
+     * TAG for logcat logging.
+     */
+    private val TAG = "APIChecker"
 
     private val filePicker: FilePicker by inject()
 
@@ -67,6 +72,7 @@ class Tab1 : Fragment() {
         if (checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE)
             != PackageManager.PERMISSION_GRANTED
         ) {
+            Log.w(TAG, "Cannot get permission:" + Manifest.permission.WRITE_EXTERNAL_STORAGE)
             toast(R.string.control_no_permission)
             return
         }
@@ -76,6 +82,7 @@ class Tab1 : Fragment() {
         try {
             inputStream = activity!!.contentResolver.openInputStream(Uri.parse(text_path_file.text.toString()))
         } catch (exception: FileNotFoundException) {
+            Log.w(TAG, "Cannot get file:" + text_path_file.text.toString())
             toast(R.string.encryption_input_error)
             return
         }
@@ -83,18 +90,21 @@ class Tab1 : Fragment() {
             outputStream =
                 activity!!.contentResolver.openOutputStream(Uri.parse(text_path_file_decrypted.text.toString()))
         } catch (exception: FileNotFoundException) {
+            Log.w(TAG, "Cannot get file:" + text_path_file_decrypted.text.toString())
             toast(R.string.encryption_output_error)
             return
         }
 
         if (radio_aes.isChecked) {
             if (password.length < 16) {
+                Log.w(TAG, "Password too short")
                 toast(R.string.encryption_incorrect_password_AES)
                 return
             }
             encryptor = AESEncryptor()
         } else if (radio_des.isChecked) {
             if (password.length < 8) {
+                Log.w(TAG, "Password too short")
                 toast(R.string.encryption_incorrect_password_DES)
                 return
             }
@@ -106,6 +116,7 @@ class Tab1 : Fragment() {
         } else {
             encryptor.decrypt(password, inputStream!!, outputStream!!)
         }
+        Log.i(TAG, "Encryption process successful")
         toast(R.string.encryption_successful)
     }
 }

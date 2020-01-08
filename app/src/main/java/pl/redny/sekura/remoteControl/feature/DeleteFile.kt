@@ -7,7 +7,6 @@ import pl.redny.sekura.util.ResourcesUtil
 import pl.redny.sekura.util.SuperUser
 import java.io.File
 
-
 class DeleteFile() : Feature {
     override fun handle(parameters: HashMap<String, Any?>) {
         val uris = parameters["files"] as List<String>

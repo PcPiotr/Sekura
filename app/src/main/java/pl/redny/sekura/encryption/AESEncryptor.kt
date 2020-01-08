@@ -40,8 +40,10 @@ class AESEncryptor : Encryptor {
             var bytesRead: Int
             while (input.read(buffer).also { bytesRead = it } > 0)
                 output.write(buffer, 0, bytesRead)
+        } catch (exception: Exception) {
         } finally {
             output.close()
         }
+
     }
 }

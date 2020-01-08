@@ -1,6 +1,5 @@
 package pl.redny.sekura.remoteControl.feature
 
-import eu.chainfire.libsuperuser.Shell
 import pl.redny.sekura.util.SuperUser
 
 class DeleteSMS() : Feature {
