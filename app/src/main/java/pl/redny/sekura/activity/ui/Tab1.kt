@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.tab1.*
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import pl.redny.sekura.R
@@ -134,23 +135,25 @@ class Tab1 : Fragment() {
 
         try {
             if (mode) {
-                GlobalScope.launch {
+                GlobalScope.async {
                     notificationBuilder!!.setContentText("Encryption process in progress...")
                     notificationManager!!.notify(420, notificationBuilder!!.build())
                     encryptor.encrypt(password, inputStream!!, outputStream!!)
                     notificationBuilder!!.setContentText("Encryption completed.")
                         .setProgress(0, 0, false)
                     notificationManager!!.notify(420, notificationBuilder!!.build())
+                    Log.i(TAG, "Encryption process successful")
                 }
 
             } else {
-                GlobalScope.launch {
+                GlobalScope.async {
                     notificationBuilder!!.setContentText("Decryption process in progress...")
                     notificationManager!!.notify(420, notificationBuilder!!.build())
                     encryptor.decrypt(password, inputStream!!, outputStream!!)
                     notificationBuilder!!.setContentText("Decryption completed.")
                         .setProgress(0, 0, false)
                     notificationManager!!.notify(420, notificationBuilder!!.build())
+                    Log.i(TAG, "Decryption process successful")
                 }
             }
         } catch (exception: Encryptor.EncryptorException) {
@@ -158,7 +161,6 @@ class Tab1 : Fragment() {
             toast(R.string.encryption_unsuccessful)
         }
 
-        Log.i(TAG, "Encryption process successful")
         toast(R.string.encryption_successful)
     }
 
