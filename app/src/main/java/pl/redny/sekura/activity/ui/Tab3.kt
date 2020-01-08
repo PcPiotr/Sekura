@@ -30,6 +30,7 @@ class Tab3 : Fragment() {
         button_pin_reset.setOnClickListener { resetAuthButton() }
         button_ask_permissions.setOnClickListener { grantPermissions() }
         button_ask_permissions_root.setOnClickListener { askForRoot() }
+        button_close.setOnClickListener { Runtime.getRuntime().exit(0) }
     }
 
     private fun setAuthButton() {

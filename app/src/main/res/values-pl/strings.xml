@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="encryption_file_pick">Wybierz plik</string>
+    <string name="encryption_file_pick">Plik</string>
     <string name="encryption_mode_encrypt">Szyfrowanie</string>
     <string name="encryption_mode_decrypt">Deszyfrowanie</string>
     <string name="encryption_encryption">Wykonaj</string>
@@ -42,12 +42,26 @@
     <string name="encryption_mode_text">Tryb</string>
     <string name="control_sentence">Fraza</string>
     <string name="control_remote_location">Zdalna lokalizacja</string>
-    <string name="control_remote_location_text">Otrzymuj dane o aktualnej lokalizacji urządzenia. \nWymagane uprawnienia: Lokalizacja użytkownika.</string>
+    <string name="control_remote_location_text">Otrzymuj dane o aktualnej lokalizacji urządzenia.\nWymagane uprawnienia: Lokalizacja użytkownika.</string>
     <string name="control_global">Zdalna kontrola urządzenia</string>
     <string name="encryption_global">Szyfrowanie</string>
-    <string name="encryption_text">"Szyfruj poufne dane przechowywane na urządzeniu. Wskaż plik który chcesz
-        zaszyfować/deszyfrować oraz plik wyjściowy.\\nWymagane uprawnienia: Zapis i odczyt pamięci wewnętrznej oraz
-        zewnętrznej. "
+    <string name="encryption_text">"Szyfruj poufne dane przechowywane na urządzeniu. Wskaż plik który chcesz zaszyfować/deszyfrować oraz plik wyjściowy.\nWymagane uprawnienia: Pamięć. "
     </string>
     <string name="control_text">Zdalnie steruj urządzeniem. Zaufane numery telefonu można ustalić w ustawieniach.</string>
+    <string name="sms_control_phone_number">Numer telefonu</string>
+    <string name="settings_root_ask">Poproś o Root</string>
+    <string name="settings_notification_checkbox">Powiadomienie serwisowe</string>
+    <string name="settings_grant_permissions">Nadaj uprawnienia</string>
+    <string name="remote_sms_erasure">Zdalne usuwanie SMS</string>
+    <string name="remote_file_erasure">Zdalne usuwanie plików</string>
+    <string name="encryption_unsuccessful">Błąd szyfrowania danych</string>
+    <string name="encryption_successful">Szyfrowanie zakończone sukcesem</string>
+    <string name="encryption_output_error">Niepoprawny plik wyjściowy</string>
+    <string name="encryption_input_error">Niepoprawny plik wejściowy</string>
+    <string name="control_no_permission">Brak uprawnień</string>
+    <string name="ask_permission">Uprawnienia</string>
+    <string name="control_remote_erase_text">Zdalnie usuwaj wiadomości SMS.\nWymagane uprawnienia: Uprawnienia Root</string>
+    <string name="control_remote_file_erasure_text">Zdalnie usuwaj pliki.\nWymagane uprawnienia: Pamięć\nDla pamięci zewnętrznej: Uprawnienia Root</string>
+    <string name="control_remote_file_erasure_list">Wybrane pliki</string>
+    <string name="settings_close">Wyłącz aplikację</string>
 </resources>

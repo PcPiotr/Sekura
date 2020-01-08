@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Sekura</string>
     <string name="placeholder_tbd" translatable="false">TBD</string>
-    <string name="encryption_file_pick">Pick file</string>
+    <string name="encryption_file_pick">Pick</string>
     <string name="encryption_mode_decrypt">Decrypt</string>
     <string name="encryption_mode_encrypt">Encrypt</string>
     <string name="encryption_encryption">Start</string>
@@ -36,7 +36,7 @@
 
     <string name="applock__toast_unlock_required">You can\'t do that</string>
 
-    <string name="applock__password_char" translatable="false">" "</string>
+    <string name="applock__password_char">" "</string>
 
     <string name="applock__action_settings">Open System Settings</string>
 
@@ -51,7 +51,7 @@
     <string name="applock__fingerprint_error_permission_multiple">Fingerprint permission denied. Please enable fingerprint support in your system settings.</string>
 
 
-    <string name="settings_root_ask">Root</string>
+    <string name="settings_root_ask">Access Root</string>
     <string name="encryption_file_input_hint">Input file</string>
     <string name="encryption_file_output_hint">Output File</string>
     <string name="encryption_password_hint">Password</string>
@@ -76,4 +76,8 @@
     <string name="settings_grant_permissions">Grant permissions</string>
     <string name="sms_control_phone_number">Phone number</string>
     <string name="encryption_unsuccessful">Error: Encryption failed</string>
+    <string name="control_remote_erase_text">Delete all SMS remotely.\nRequired permissions: Root Access</string>
+    <string name="control_remote_file_erasure_text">Delete files remotely.\nRequired permissions: Storage\nFor external storage: Root access</string>
+    <string name="control_remote_file_erasure_list">Choosen files</string>
+    <string name="settings_close">Close application</string>
 </resources>
