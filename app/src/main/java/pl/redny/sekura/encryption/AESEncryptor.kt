@@ -29,7 +29,7 @@ class AESEncryptor : Encryptor {
         try {
             val iv = IvParameterSpec(IV_PARAMETER_SPEC.toByteArray(charset("UTF-8")))
 
-            val keySpec = PBEKeySpec("password".toCharArray(), SALT, 65536, 256)
+            val keySpec = PBEKeySpec(keyStr.toCharArray(), SALT, 65536, 256)
             val keyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1")
             val key: ByteArray = keyFactory.generateSecret(keySpec).encoded
             val secretKeySpec = SecretKeySpec(key, ALGO_SECRET_KEY)
