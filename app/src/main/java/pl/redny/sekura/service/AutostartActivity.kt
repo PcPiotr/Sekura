@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import pl.redny.sekura.util.APIChecker
 
-
 class AutostartActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +16,6 @@ class AutostartActivity : Activity() {
         } else {
             startService(i)
         }
-
         moveTaskToBack(true)
     }
 

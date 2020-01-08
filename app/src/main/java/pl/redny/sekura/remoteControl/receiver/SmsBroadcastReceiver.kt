@@ -3,16 +3,14 @@ package pl.redny.sekura.remoteControl.receiver
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.location.LocationManager
 import android.provider.Telephony
-import org.koin.android.ext.android.inject
 import pl.redny.sekura.activity.ViewModel
 import pl.redny.sekura.remoteControl.feature.DeleteFile
 import pl.redny.sekura.remoteControl.feature.DeleteSMS
 import pl.redny.sekura.remoteControl.feature.SharePhoneLocation
 import pl.redny.sekura.remoteControl.sender.SmsSender
 
-class SmsBroadcastReceiver(val viewModel: ViewModel) : BroadcastReceiver() {
+class SmsBroadcastReceiver(private val viewModel: ViewModel) : BroadcastReceiver() {
     private val deleteFile: DeleteFile = DeleteFile()
     private val deleteSMS: DeleteSMS = DeleteSMS()
     private val sharePhoneLocation: SharePhoneLocation = SharePhoneLocation(SmsSender())

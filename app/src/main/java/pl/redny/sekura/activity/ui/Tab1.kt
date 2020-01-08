@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.tab1.*
 import org.koin.android.ext.android.inject
 import pl.redny.sekura.R
-import pl.redny.sekura.activity.view.filePicker.FilePicker
+import pl.redny.sekura.view.filePicker.FilePicker
 import pl.redny.sekura.encryption.AESEncryptor
 import pl.redny.sekura.encryption.DESEncryptor
 import pl.redny.sekura.encryption.Encryptor

@@ -1,7 +1,6 @@
-package pl.redny.sekura.activity.view.filePicker
+package pl.redny.sekura.view.filePicker
 
 import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
 
 interface FilePicker {
     fun openFilePicker(activity: Activity, code: Int)

@@ -34,15 +34,24 @@ class ForegroundService : Service() {
         intentFilter.addAction("android.provider.Telephony.SMS_RECEIVED")
         registerReceiver(broadcastReceiver, intentFilter)
         locationReceiver = LocationReceiver(getSystemService(Context.LOCATION_SERVICE) as LocationManager, viewModel)
-        if ( this.checkSelfPermission( android.Manifest.permission.ACCESS_COARSE_LOCATION ) == PackageManager.PERMISSION_GRANTED ) {
-            locationReceiver!!.locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0f, locationReceiver)
-            locationReceiver!!.locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0f, locationReceiver)
+        if (this.checkSelfPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            locationReceiver!!.locationManager.requestLocationUpdates(
+                LocationManager.NETWORK_PROVIDER,
+                0,
+                0f,
+                locationReceiver!!
+            )
+            locationReceiver!!.locationManager.requestLocationUpdates(
+                LocationManager.GPS_PROVIDER,
+                0,
+                0f,
+                locationReceiver!!
+            )
         }
     }
 
     override fun onBind(intent: Intent?): IBinder? {
         return Binder()
-
     }
 
     @RequiresApi(Build.VERSION_CODES.ECLAIR)
@@ -61,7 +70,7 @@ class ForegroundService : Service() {
             .setPriority(NotificationCompat.PRIORITY_MIN)
             .build()
         startForeground(1, notification)
-        return Service.START_STICKY
+        return START_STICKY
     }
 
     override fun onDestroy() {
@@ -77,8 +86,7 @@ class ForegroundService : Service() {
                 NotificationManager.IMPORTANCE_MIN
             )
             serviceChannel.setShowBadge(false);
-            val manager = getSystemService(NotificationManager::class.java)
-            manager.createNotificationChannel(serviceChannel)
+            getSystemService(NotificationManager::class.java)!!.createNotificationChannel(serviceChannel)
         }
     }
 }

@@ -15,7 +15,6 @@ class MyPageAdapter(fm: FragmentManager, var activity: AppCompatActivity) : Frag
             0 -> Tab1()
             1 -> Tab2()
             2 -> Tab3()
-            3 -> Tab4()
             else -> null!!
         }
     }
@@ -29,7 +28,6 @@ class MyPageAdapter(fm: FragmentManager, var activity: AppCompatActivity) : Frag
             0 -> ResourcesUtil.getResource(activity.applicationContext, R.string.encryption_tab)
             1 -> ResourcesUtil.getResource(activity.applicationContext, R.string.control_tab)
             2 -> ResourcesUtil.getResource(activity.applicationContext, R.string.settings_tab)
-            3 -> ResourcesUtil.getResource(activity.applicationContext, R.string.about_tab)
             else -> null!!
         }
     }

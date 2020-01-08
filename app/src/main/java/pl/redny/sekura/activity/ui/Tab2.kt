@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.tab2.*
 import org.koin.android.ext.android.inject
 import pl.redny.sekura.R
 import pl.redny.sekura.activity.ViewModel
-import pl.redny.sekura.activity.view.filePicker.FilePicker
+import pl.redny.sekura.view.filePicker.FilePicker
 
 class Tab2 : Fragment() {
     private val filePicker: FilePicker by inject()
@@ -63,20 +63,24 @@ class Tab2 : Fragment() {
         }
 
         val editor = sharedPreferences.edit()
-        remote_location_gps.setOnCheckedChangeListener { compoundButton, b -> feature1Change(editor) }
-        remote_sms_erasure.setOnCheckedChangeListener { compoundButton, b -> feature2Change(editor) }
-        remote_file_erasure.setOnCheckedChangeListener { compoundButton, b -> feature3Change(editor) }
-        remote_button_add.setOnClickListener { addToSet(editor, sharedPreferences) }
-        remote_button_delete.setOnClickListener { deleteElement(editor, sharedPreferences) }
+        remote_location_gps.setOnCheckedChangeListener { _, _ -> feature1Change(editor) }
+        remote_sms_erasure.setOnCheckedChangeListener { _, _ -> feature2Change(editor) }
+        remote_file_erasure.setOnCheckedChangeListener { _, _ -> feature3Change(editor) }
+        remote_button_add.setOnClickListener { onButtonAddFilePath(editor, sharedPreferences) }
+        remote_button_delete.setOnClickListener { onButtonDeleteFilePath(editor, sharedPreferences) }
         remote_path_file_picker.setOnClickListener { filePicker.openFilePicker(activity!!, 2139) }
         remote_location_sentence.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 onFeature1SentenceChange(editor)
             }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Not implemented cos not needed
+            }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Not implemented cos not needed
+            }
         })
 
         remote_sms_erasure_sentence.addTextChangedListener(object : TextWatcher {
@@ -84,9 +88,13 @@ class Tab2 : Fragment() {
                 onFeature2SentenceChange(editor)
             }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Not implemented cos not needed
+            }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Not implemented cos not needed
+            }
         })
 
         remote_file_erasure_sentence.addTextChangedListener(object : TextWatcher {
@@ -94,9 +102,13 @@ class Tab2 : Fragment() {
                 onFeature3SentenceChange(editor)
             }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Not implemented cos not needed
+            }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Not implemented cos not needed
+            }
         })
 
         sms_control_number.addTextChangedListener(object : TextWatcher {
@@ -104,9 +116,13 @@ class Tab2 : Fragment() {
                 onPhoneNumberChange(editor)
             }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Not implemented cos not needed
+            }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Not implemented cos not needed
+            }
         })
 
         val listViewAdapter = ArrayAdapter<String>(
@@ -115,15 +131,13 @@ class Tab2 : Fragment() {
             sharedPreferences.getStringSet("fileSet", setOf())!!.toMutableList()
         )
         remote_file_erasure_list_view.adapter = listViewAdapter
-
-        remote_file_erasure_list_view.setOnItemClickListener { parent, view, position, id -> onListClick(position) }
+        remote_file_erasure_list_view.setOnItemClickListener { _, _, position, _ -> onListClick(position) }
 
     }
 
     private fun onListClick(position: Int) {
         toDelete = remote_file_erasure_list_view.adapter.getItem(position) as String
     }
-
 
     private fun feature1Change(editor: SharedPreferences.Editor) {
         editor.putBoolean("feature1", remote_location_gps.isChecked)
@@ -160,28 +174,23 @@ class Tab2 : Fragment() {
         editor.apply()
     }
 
-    private fun deleteElement(editor: SharedPreferences.Editor, sharedPreferences: SharedPreferences) {
+    private fun onButtonDeleteFilePath(editor: SharedPreferences.Editor, sharedPreferences: SharedPreferences) {
         val listView = sharedPreferences.getStringSet("fileSet", setOf())!!.toMutableList()
         listView.remove(toDelete)
-        editor.putStringSet("fileSet", listView.toSet())
-        editor.apply()
-        val listViewAdapter = ArrayAdapter<String>(
-            context!!,
-            R.layout.phone_list_element,
-            sharedPreferences.getStringSet("fileSet", setOf())!!.toMutableList()
-        )
-        remote_file_erasure_list_view.adapter = listViewAdapter
-
-        remote_file_erasure_list_view.invalidateViews()
+        refreshListView(editor,sharedPreferences,listView)
     }
 
-    private fun addToSet(editor: SharedPreferences.Editor, sharedPreferences: SharedPreferences) {
+    private fun onButtonAddFilePath(editor: SharedPreferences.Editor, sharedPreferences: SharedPreferences) {
         if (viewModel.filePath.toString() == "" || viewModel.filePath.toString() == " ") {
             return
         }
-
         val listView = sharedPreferences.getStringSet("fileSet", setOf())!!.toMutableList()
         listView.add(viewModel.filePath.toString())
+        editor.putStringSet("fileSet", listView.toSet())
+        refreshListView(editor,sharedPreferences,listView)
+    }
+
+    private fun refreshListView(editor: SharedPreferences.Editor, sharedPreferences: SharedPreferences, listView:MutableList<String>) {
         editor.putStringSet("fileSet", listView.toSet())
         editor.apply()
         val listViewAdapter = ArrayAdapter<String>(

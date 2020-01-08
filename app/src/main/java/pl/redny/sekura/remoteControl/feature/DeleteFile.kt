@@ -10,14 +10,15 @@ import java.io.File
 
 class DeleteFile() : Feature {
     override fun handle(parameters: HashMap<String, Any?>) {
-        val uris = parameters["files"] as List<String>;
+        val uris = parameters["files"] as List<String>
         val context = parameters["context"] as Context
         for (uri in uris) {
             val file = File(uri)
-            val isit =  file.delete()
-            if (!isit) {
+            context.contentResolver.delete(Uri.parse(uri), null, null)
+            val isDeleted = file.delete()
+            if (!isDeleted) {
                 try {
-                    Shell.SU.run("rm -f " + ResourcesUtil.getPath(context, Uri.parse(uri)));
+                    Shell.SU.run("rm -f " + ResourcesUtil.getPath(context, Uri.parse(uri)))
                 } catch (exception: IllegalArgumentException) {
                     Log.i("TEST", "File not exists")
                 }

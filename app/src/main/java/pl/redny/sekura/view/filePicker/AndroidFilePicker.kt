@@ -1,4 +1,4 @@
-package pl.redny.sekura.activity.view.filePicker
+package pl.redny.sekura.view.filePicker
 
 import android.app.Activity
 import android.content.Intent
