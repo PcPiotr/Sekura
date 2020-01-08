@@ -1,6 +1,7 @@
 package pl.redny.sekura.activity.ui
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
@@ -15,6 +16,8 @@ import kotlinx.android.synthetic.main.tab2.*
 import org.koin.android.ext.android.inject
 import pl.redny.sekura.R
 import pl.redny.sekura.activity.ViewModel
+import pl.redny.sekura.service.ForegroundService
+import pl.redny.sekura.util.APIChecker
 import pl.redny.sekura.util.SuperUser
 import pl.redny.sekura.view.filePicker.FilePicker
 
@@ -141,6 +144,14 @@ class Tab2 : Fragment() {
     }
 
     private fun feature1Change(editor: SharedPreferences.Editor) {
+        val i = Intent(activity, ForegroundService::class.java)
+        if (APIChecker.isOreo()) {
+            activity!!.stopService(i)
+            activity!!.startForegroundService(i)
+        } else {
+            activity!!.stopService(i)
+            activity!!.startService(i)
+        }
         editor.putBoolean("feature1", remote_location_gps.isChecked)
         editor.apply()
     }

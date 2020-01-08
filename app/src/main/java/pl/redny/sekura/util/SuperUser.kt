@@ -7,7 +7,7 @@ class SuperUser : AsyncTask<String, Void, Void>() {
 
     override fun doInBackground(vararg params: String?): Void? {
         if (APIChecker.isRooted()) {
-            Shell.SU.run(params[0] as String)
+            Shell.SU.run(params)
         }
         return null
     }

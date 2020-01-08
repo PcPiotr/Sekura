@@ -72,12 +72,20 @@
     <string name="control_no_permission">Can\'t get required permission!</string>
     <string name="ask_permission">Permission</string>
     <string name="remote_sms_erasure">Remote SMS erasure</string>
-    <string name="remote_file_erasure">Remote files erasure</string>
+    <string name="remote_file_erasure" translatable="false">Remote files erasure</string>
     <string name="settings_grant_permissions">Grant permissions</string>
     <string name="sms_control_phone_number">Phone number</string>
     <string name="encryption_unsuccessful">Error: Encryption failed</string>
     <string name="control_remote_erase_text">Delete all SMS remotely.\nRequired permissions: Root Access</string>
     <string name="control_remote_file_erasure_text">Delete files remotely.\nRequired permissions: Storage\nFor external storage: Root access</string>
-    <string name="control_remote_file_erasure_list">Choosen files</string>
+    <string name="control_remote_file_erasure_list">Chosen files</string>
     <string name="settings_close">Close application</string>
+    <string name="notification_service_title">Sekura process is running...</string>
+    <string name="notification_service_content">You can disable this notification in App info > Notifications.</string>
+    <string name="notification_encryption_progress">Encryption process in progress...</string>
+    <string name="notification_decryption_progress">Decryption process in progress...</string>
+    <string name="notification_encryption_complete">Encryption completed.</string>
+    <string name="notification_decryption_complete">Decryption completed.</string>
+    <string name="add">Add</string>
+    <string name="delete">Delete</string>
 </resources>

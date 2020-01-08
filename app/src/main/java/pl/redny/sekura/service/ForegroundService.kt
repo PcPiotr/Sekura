@@ -1,9 +1,7 @@
 package pl.redny.sekura.service
 
 import android.R
-import android.annotation.SuppressLint
 import android.app.*
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
@@ -19,6 +17,7 @@ import pl.redny.sekura.activity.MainActivity
 import pl.redny.sekura.activity.ViewModel
 import pl.redny.sekura.remoteControl.receiver.LocationReceiver
 import pl.redny.sekura.remoteControl.receiver.SmsBroadcastReceiver
+import pl.redny.sekura.util.ResourcesUtil
 
 
 class ForegroundService : Service() {
@@ -63,8 +62,8 @@ class ForegroundService : Service() {
             0, notificationIntent, 0
         )
         val notification: Notification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("Sekura process is running...")
-            .setContentText("You can disable this notification in App info > Notifications.")
+            .setContentTitle(ResourcesUtil.getResource(this, pl.redny.sekura.R.string.notification_service_title))
+            .setContentText(ResourcesUtil.getResource(this, pl.redny.sekura.R.string.notification_service_content))
             .setSmallIcon(R.drawable.btn_star)
             .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_MIN)

@@ -64,4 +64,12 @@
     <string name="control_remote_file_erasure_text">Zdalnie usuwaj pliki.\nWymagane uprawnienia: Pamięć\nDla pamięci zewnętrznej: Uprawnienia Root</string>
     <string name="control_remote_file_erasure_list">Wybrane pliki</string>
     <string name="settings_close">Wyłącz aplikację</string>
+    <string name="notification_decryption_progress">Trwa deszyfrowanie...</string>
+    <string name="notification_encryption_complete">Szyfrowanie ukończone.</string>
+    <string name="notification_decryption_complete">Deszyfrowanie ukończone.</string>
+    <string name="notification_encryption_progress">Trwa szyfrowanie...</string>
+    <string name="notification_service_content">Możesz wyłączyć powiadomienia w systemowych ustawieniach aplikacji</string>
+    <string name="notification_service_title">Proces Sekura pracuje.</string>
+    <string name="add">Dodaj</string>
+    <string name="delete">Usuń</string>
 </resources>

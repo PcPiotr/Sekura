@@ -13,7 +13,6 @@ class DeleteFile() : Feature {
         val context = parameters["context"] as Context
         for (uri in uris) {
             val file = File(uri)
-            context.contentResolver.delete(Uri.parse(uri), null, null)
             val isDeleted = file.delete()
             if (!isDeleted) {
                 try {
