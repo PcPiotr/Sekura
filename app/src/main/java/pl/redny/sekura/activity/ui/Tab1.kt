@@ -49,10 +49,10 @@ class Tab1 : Fragment() {
         button_default_action.setOnClickListener { onDefaultButton() }
     }
 
-    private fun toast(StringValue: Int) {
+    private fun toast(stringValue: Int) {
         Toast.makeText(
             activity,
-            ResourcesUtil.getResource(context!!, StringValue),
+            ResourcesUtil.getResource(context!!, stringValue),
             Toast.LENGTH_SHORT
         ).show()
     }
@@ -109,6 +109,9 @@ class Tab1 : Fragment() {
                 return
             }
             encryptor = DESEncryptor()
+        } else {
+            Log.e(TAG, "Encryptor not found")
+            return
         }
 
         if (mode) {
