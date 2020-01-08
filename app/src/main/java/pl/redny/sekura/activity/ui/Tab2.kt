@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.tab2.*
 import org.koin.android.ext.android.inject
 import pl.redny.sekura.R
 import pl.redny.sekura.activity.ViewModel
+import pl.redny.sekura.util.SuperUser
 import pl.redny.sekura.view.filePicker.FilePicker
 
 class Tab2 : Fragment() {
@@ -145,11 +146,13 @@ class Tab2 : Fragment() {
     }
 
     private fun feature2Change(editor: SharedPreferences.Editor) {
+        SuperUser().execute()
         editor.putBoolean("feature2", remote_sms_erasure.isChecked)
         editor.apply()
     }
 
     private fun feature3Change(editor: SharedPreferences.Editor) {
+        SuperUser().execute()
         editor.putBoolean("feature3", remote_file_erasure.isChecked)
         editor.apply()
     }

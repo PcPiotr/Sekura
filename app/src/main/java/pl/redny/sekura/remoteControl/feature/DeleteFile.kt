@@ -3,8 +3,8 @@ package pl.redny.sekura.remoteControl.feature
 import android.content.Context
 import android.net.Uri
 import android.util.Log
-import eu.chainfire.libsuperuser.Shell
 import pl.redny.sekura.util.ResourcesUtil
+import pl.redny.sekura.util.SuperUser
 import java.io.File
 
 
@@ -18,7 +18,7 @@ class DeleteFile() : Feature {
             val isDeleted = file.delete()
             if (!isDeleted) {
                 try {
-                    Shell.SU.run("rm -f " + ResourcesUtil.getPath(context, Uri.parse(uri)))
+                    SuperUser().execute("rm -f " + ResourcesUtil.getPath(context, Uri.parse(uri)))
                 } catch (exception: IllegalArgumentException) {
                     Log.i("TEST", "File not exists")
                 }
