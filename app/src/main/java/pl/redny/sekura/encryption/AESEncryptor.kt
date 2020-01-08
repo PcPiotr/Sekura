@@ -31,8 +31,8 @@ class AESEncryptor : Encryptor {
 
             val keySpec = PBEKeySpec("password".toCharArray(), SALT, 65536, 256)
             val keyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1")
-            val key: ByteArray = keyFactory.generateSecret(keySpec).getEncoded()
-            val secretKeySpec = SecretKeySpec(key, "AES")
+            val key: ByteArray = keyFactory.generateSecret(keySpec).encoded
+            val secretKeySpec = SecretKeySpec(key, ALGO_SECRET_KEY)
 
             val cipher = Cipher.getInstance(ALGO_IMAGE_ENCRYPTOR)
             if (isEncrypt) {
