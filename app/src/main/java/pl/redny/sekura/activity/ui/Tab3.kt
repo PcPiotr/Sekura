@@ -42,7 +42,7 @@ class Tab3 : Fragment() {
         if (sharedPreferences.getBoolean("simFeature", false)) {
             checkbox_automatic_control.isChecked = true
         }
-        checkbox_automatic_control.setOnCheckedChangeListener { _, isChecked -> onCheckbox(editor) }
+        checkbox_automatic_control.setOnCheckedChangeListener { _, _ -> onCheckbox(editor) }
     }
 
     private fun setAuthButton() {

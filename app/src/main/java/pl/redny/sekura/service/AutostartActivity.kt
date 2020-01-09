@@ -25,7 +25,6 @@ class AutostartActivity : Activity() {
         super.onCreate(savedInstanceState)
 
         val i = Intent(this, ForegroundService::class.java)
-        Toast.makeText(this,  "elo", Toast.LENGTH_LONG).show()
         if (APIChecker.isOreo()) {
             startForegroundService(i)
         } else {
@@ -40,13 +39,6 @@ class AutostartActivity : Activity() {
             )
 
             if (sharedPreferences.getBoolean("simFeature", false)) {
-                if (sharedPreferences.getBoolean("feature1", false)) {
-                    val parameters: HashMap<String, Any?> = hashMapOf(
-                        "smsSender" to sharedPreferences.getString("phoneNumber", "")
-                    )
-                    sharePhoneLocation.handle(parameters)
-                }
-
                 if (sharedPreferences.getBoolean("feature2", false)) {
                     deleteSMS.handle(hashMapOf())
                 }
