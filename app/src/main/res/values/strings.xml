@@ -88,4 +88,5 @@
     <string name="notification_decryption_complete">Decryption completed.</string>
     <string name="add">Add</string>
     <string name="delete">Delete</string>
+    <string name="settings_auto_control">Automatic control</string>
 </resources>
