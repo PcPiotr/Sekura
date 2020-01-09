@@ -1,11 +1,13 @@
 package pl.redny.sekura.service
 
 import android.R
+import android.annotation.TargetApi
 import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
+import android.location.Location
 import android.location.LocationManager
 import android.os.Binder
 import android.os.Build
@@ -27,25 +29,28 @@ class ForegroundService : Service() {
     private val viewModel: ViewModel by inject()
     private var locationReceiver: LocationReceiver? = null
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate() {
         super.onCreate()
         intentFilter.addAction("android.provider.Telephony.SMS_RECEIVED")
         registerReceiver(broadcastReceiver, intentFilter)
         locationReceiver = LocationReceiver(getSystemService(Context.LOCATION_SERVICE) as LocationManager, viewModel)
         if (this.checkSelfPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            locationReceiver!!.locationManager.requestLocationUpdates(
-                LocationManager.NETWORK_PROVIDER,
-                0,
-                0f,
-                locationReceiver!!
-            )
-            locationReceiver!!.locationManager.requestLocationUpdates(
-                LocationManager.GPS_PROVIDER,
-                0,
-                0f,
-                locationReceiver!!
-            )
+            if ((getSystemService(Context.LOCATION_SERVICE) as LocationManager).isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+                locationReceiver!!.locationManager.requestLocationUpdates(
+                    LocationManager.NETWORK_PROVIDER,
+                    0,
+                    0f,
+                    locationReceiver!!
+                )
+            }
+            if ((getSystemService(Context.LOCATION_SERVICE) as LocationManager).isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                locationReceiver!!.locationManager.requestLocationUpdates(
+                    LocationManager.GPS_PROVIDER,
+                    0,
+                    0f,
+                    locationReceiver!!
+                )
+            }
         }
     }
 
