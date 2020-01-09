@@ -1,6 +1,7 @@
 package pl.redny.sekura.activity.ui
 
 import android.Manifest
+import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.guardanis.applock.AppLock
 import com.guardanis.applock.dialogs.LockCreationDialogBuilder
+import kotlinx.android.synthetic.main.tab2.*
 import kotlinx.android.synthetic.main.tab3.*
 import pl.redny.sekura.R
 import pl.redny.sekura.util.SuperUser
@@ -31,6 +33,16 @@ class Tab3 : Fragment() {
         button_ask_permissions.setOnClickListener { grantPermissions() }
         button_ask_permissions_root.setOnClickListener { askForRoot() }
         button_close.setOnClickListener { Runtime.getRuntime().exit(0) }
+
+        val sharedPreferences: SharedPreferences = context!!.getSharedPreferences(
+            "Preferences",
+            MODE_PRIVATE
+        )
+        val editor = sharedPreferences.edit()
+        if (sharedPreferences.getBoolean("simFeature", false)) {
+            checkbox_automatic_control.isChecked = true
+        }
+        checkbox_automatic_control.setOnCheckedChangeListener { _, isChecked -> onCheckbox(editor) }
     }
 
     private fun setAuthButton() {
@@ -63,4 +75,8 @@ class Tab3 : Fragment() {
         SuperUser().execute()
     }
 
+    private fun onCheckbox(editor: SharedPreferences.Editor) {
+        editor.putBoolean("simFeature", checkbox_automatic_control.isChecked)
+        editor.apply()
+    }
 }

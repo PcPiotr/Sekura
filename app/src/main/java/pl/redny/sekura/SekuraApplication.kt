@@ -12,5 +12,4 @@ class SekuraApplication : Application() {
             modules(mainActivityModules)
         }
     }
-
 }

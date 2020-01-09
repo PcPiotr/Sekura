@@ -102,6 +102,26 @@
                     android:layout_below="@id/button_close"
                     android:background="@android:color/darker_gray"
                     android:id="@+id/button_close_separator"/>
+            <CheckBox
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/button_close_separator"
+                    android:layout_centerInParent="true"
+                    android:textAllCaps="true"
+                    android:textSize="20sp"
+                    android:text="@string/settings_auto_control"
+                    android:id="@+id/checkbox_automatic_control"/>
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_below="@id/checkbox_automatic_control"
+                    android:background="@android:color/darker_gray"
+                    android:id="@+id/automatic_control_separator"/>
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
