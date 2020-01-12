@@ -8,12 +8,15 @@ import pl.redny.sekura.activity.ViewModel
 import pl.redny.sekura.remoteControl.feature.DeleteFile
 import pl.redny.sekura.remoteControl.feature.DeleteSMS
 import pl.redny.sekura.remoteControl.feature.SharePhoneLocation
+import pl.redny.sekura.remoteControl.sender.Sender
 import pl.redny.sekura.remoteControl.sender.SmsSender
 
 class SmsBroadcastReceiver(private val viewModel: ViewModel) : BroadcastReceiver() {
-    private val deleteFile: DeleteFile = DeleteFile()
-    private val deleteSMS: DeleteSMS = DeleteSMS()
-    private val sharePhoneLocation: SharePhoneLocation = SharePhoneLocation(SmsSender())
+    private val smsSender: SmsSender = SmsSender()
+    private val deleteFile: DeleteFile = DeleteFile(smsSender)
+    private val deleteSMS: DeleteSMS = DeleteSMS(smsSender)
+    private val sharePhoneLocation: SharePhoneLocation = SharePhoneLocation(smsSender)
+
     override fun onReceive(context: Context?, intent: Intent) {
         if (intent.action == Telephony.Sms.Intents.SMS_RECEIVED_ACTION) {
             var smsSender = ""

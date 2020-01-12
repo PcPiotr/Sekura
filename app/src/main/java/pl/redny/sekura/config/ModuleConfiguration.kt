@@ -18,12 +18,13 @@ class ModuleConfiguration
 
 val mainActivityModules = module {
     single { ModuleConfiguration() }
+    single { SmsSender() }
     single { AndroidFilePicker() } bind FilePicker::class
     single { AESEncryptor() } bind Encryptor::class
     single { DESEncryptor() }
-    single { DeleteFile() }
-    single { DeleteSMS() }
-    single { SharePhoneLocation(SmsSender()) }
+    single { DeleteFile(get()) }
+    single { DeleteSMS(get()) }
+    single { SharePhoneLocation(get()) }
     single { ViewModel() }
     single { SmsBroadcastReceiver(get()) }
 }
